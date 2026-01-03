@@ -1,0 +1,26 @@
+// This is an example file. Rename to db.ts and configure your database connection.
+// Example for Prisma:
+/*
+import { PrismaClient } from '@prisma/client'
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined
+}
+
+export const db = globalForPrisma.prisma ?? new PrismaClient()
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db
+*/
+
+// Make sure your Prisma schema includes:
+/*
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+*/
+
+
