@@ -146,7 +146,7 @@ export default function Services() {
     <motion.section 
       ref={sectionRef}
       id="services" 
-      className="py-16 bg-gradient-to-br from-blue-50 via-blue-50 to-blue-100 relative overflow-hidden"
+      className="py-16 bg-gradient-to-br from-white via-blue-50 to-blue-100 relative overflow-hidden"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -194,13 +194,15 @@ export default function Services() {
             {/* Title */}
             <motion.h2 
               ref={titleRef}
-              className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 leading-tight mb-4"
+              className="text-4xl lg:text-5xl font-black leading-tight mb-4"
+              style={{ fontFamily: 'var(--font-poppins-bold)', color: '#0083e6' }}
               whileHover={{ scale: 1.05, rotate: 1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <span className="block">Services</span>
               <motion.div 
-                className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full mt-4"
+                className="w-24 h-1 rounded-full mt-4"
+                style={{ backgroundColor: '#0083e6' }}
                 initial={{ width: 0 }}
                 whileInView={{ width: "6rem" }}
                 transition={{ delay: 0.5, duration: 0.8 }}

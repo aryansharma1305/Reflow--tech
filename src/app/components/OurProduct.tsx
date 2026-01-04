@@ -100,7 +100,8 @@ export default function OurProduct() {
         {/* Title */}
         <motion.h2
           ref={titleRef}
-          className="text-4xl lg:text-5xl font-black text-center text-gray-900 mb-12"
+          className="text-4xl lg:text-5xl font-black text-center mb-12"
+          style={{ fontFamily: 'var(--font-poppins-bold)', color: '#0083e6' }}
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300 }}
         >

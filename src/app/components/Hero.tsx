@@ -114,23 +114,31 @@ export default function Hero() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <main className="text-center max-w-5xl mx-auto">
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style={{ fontFamily: 'var(--font-poppins-bold)' }}>
+        <main>
           {/* Main Title */}
-          <motion.h1
+          <motion.div
             ref={titleRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-gray-900 leading-tight mb-6 px-4 sm:px-6"
+            className="mb-6 text-left"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-              ReFlow: A Platform to Digitise your Factory
-            </span>
-          </motion.h1>
+            <motion.h1
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-6"
+              style={{ color: '#0083e6' }}
+            >
+              ReFlow Console:
+            </motion.h1>
+            <motion.h2
+              className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-4 whitespace-nowrap font-normal"
+              style={{ color: '#0083e6', fontWeight: 400 }}
+            >
+              A Platform to Digitise your Factory.
+            </motion.h2>
+          </motion.div>
           <motion.p
             ref={subtitleRef}
-            className="text-lg sm:text-xl lg:text-2xl text-gray-800 leading-relaxed max-w-5xl mx-auto mb-12 font-bold px-4 sm:px-6"
+            className="text-lg sm:text-xl lg:text-2xl text-gray-900 leading-relaxed max-w-5xl mb-12 font-bold text-center mx-auto"
           >
             Empowering manufacturers with smart process analytics, zero downtime and data-driven decisions.
           </motion.p>

@@ -102,12 +102,22 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-2 flex-shrink-0 ml-4" style={{ minWidth: '200px', justifyContent: 'flex-end' }}>
             <Link href="/login" className="block">
               <div 
-                className="px-5 py-2.5 border-2 border-blue-600 text-blue-600 bg-white rounded-full font-semibold text-sm uppercase tracking-wide hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg transform whitespace-nowrap cursor-pointer hover:scale-105"
+                className="px-5 py-2.5 border-2 bg-white rounded-full font-semibold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-lg transform whitespace-nowrap cursor-pointer hover:scale-105"
                 style={{ 
+                  borderColor: '#0083e6',
+                  color: '#0083e6',
                   minWidth: '90px', 
                   textAlign: 'center',
                   display: 'inline-block',
                   borderRadius: '9999px',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#0083e6';
+                  e.currentTarget.style.color = '#ffffff';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                  e.currentTarget.style.color = '#0083e6';
                 }}
               >
                 LOGIN
@@ -118,8 +128,8 @@ export default function Header() {
               <div 
                 className="px-5 py-2.5 rounded-full font-semibold text-sm uppercase tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl transform whitespace-nowrap cursor-pointer register-button hover:scale-105"
                 style={{
-                  background: 'linear-gradient(to right, #2563eb, #1d4ed8)',
-                  backgroundColor: '#2563eb',
+                  background: '#0083e6',
+                  backgroundColor: '#0083e6',
                   minWidth: '110px',
                   textAlign: 'center',
                   display: 'inline-block',
@@ -222,8 +232,9 @@ export default function Header() {
                 >
                   <Link href="/login">
                     <motion.div 
-                      className="w-full px-4 py-2 border-2 border-blue-600 text-blue-600 bg-white rounded-lg font-bold text-sm uppercase tracking-wide hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform text-center cursor-pointer block"
-                      whileHover={{ scale: 1.02, y: -2 }}
+                      className="w-full px-4 py-2 border-2 bg-white rounded-lg font-bold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform text-center cursor-pointer block"
+                      style={{ borderColor: '#0083e6', color: '#0083e6' }}
+                      whileHover={{ scale: 1.02, y: -2, backgroundColor: '#0083e6', color: '#ffffff' }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -232,8 +243,9 @@ export default function Header() {
                   </Link>
                   <Link href="/register">
                     <motion.div 
-                      className="w-full px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-bold text-sm uppercase tracking-wide hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform text-center cursor-pointer block"
-                      whileHover={{ scale: 1.02, y: -2 }}
+                      className="w-full px-4 py-2 text-white rounded-lg font-bold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform text-center cursor-pointer block"
+                      style={{ backgroundColor: '#0083e6' }}
+                      whileHover={{ scale: 1.02, y: -2, backgroundColor: '#0073d1' }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => setIsMenuOpen(false)}
                     >

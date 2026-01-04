@@ -86,7 +86,7 @@ export default function Footer() {
               Platform
             </h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-gray-200 hover:text-blue-300 transition-all duration-300 text-base font-medium hover:translate-x-2 block">Dashboard</a></li>
+              <li><a href="#" className="text-gray-200 hover:text-blue-300 transition-all duration-300 text-base font-medium hover:translate-x-2 block">Reflow Console</a></li>
             </ul>
           </div>
         </div>

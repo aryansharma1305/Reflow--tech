@@ -36,12 +36,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2563eb;
+  background: #0083e6;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1d4ed8;
+  background: #0066b8;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0083e6 #f1f1f1;
 }
 
 /* Smooth scrolling */
@@ -104,8 +110,8 @@ header.reflow-header .text-black,
 .register-button-link,
 header.reflow-header .register-button,
 .reflow-header .register-button {
-  background: linear-gradient(to right, #2563eb, #1d4ed8) !important;
-  background-color: #2563eb !important;
+  background: #0083e6 !important;
+  background-color: #0083e6 !important;
   border-radius: 9999px !important;
 }
 

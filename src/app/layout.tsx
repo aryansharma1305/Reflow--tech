@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
 import PageLoader from "./components/PageLoader";
@@ -13,6 +13,12 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const poppinsBold = Poppins({
+  weight: "700",
+  variable: "--font-poppins-bold",
   subsets: ["latin"],
 });
 
@@ -87,7 +93,7 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppinsBold.variable} antialiased`}
         suppressHydrationWarning
       >
         <AuthProvider>

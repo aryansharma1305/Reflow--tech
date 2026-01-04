@@ -51,7 +51,8 @@ export default function FAQ() {
           transition={{ duration: 0.6 }}
         >
           <motion.div 
-            className="inline-flex items-center px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-sm font-semibold mb-6 shadow-lg"
+            className="inline-flex items-center px-5 py-2 text-white rounded-full text-sm font-semibold mb-6 shadow-lg"
+            style={{ fontFamily: 'var(--font-poppins-bold)', backgroundColor: '#0083e6' }}
             initial={{ scale: 0.9 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -62,10 +63,16 @@ export default function FAQ() {
             </svg>
             Frequently Asked Questions
           </motion.div>
-          <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+          <h2 
+            className="text-5xl md:text-6xl font-black mb-6"
+            style={{ fontFamily: 'var(--font-poppins-bold)', color: '#0083e6' }}
+          >
             Got Questions? We&apos;ve Got Answers
           </h2>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+          <p 
+            className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed"
+            style={{ fontFamily: 'var(--font-poppins-bold)' }}
+          >
             Everything you need to know about ReFlow Technologies and our revolutionary IIoT solutions
           </p>
         </motion.div>
@@ -88,7 +95,10 @@ export default function FAQ() {
               >
                 <div className="flex items-start gap-4 flex-1">
                   <div className="flex-shrink-0 mt-1">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md group-hover:scale-110 transition-transform">
+                    <div 
+                      className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold shadow-md group-hover:scale-110 transition-transform"
+                      style={{ backgroundColor: '#0083e6', fontFamily: 'var(--font-poppins-bold)' }}
+                    >
                       {index + 1}
                     </div>
                   </div>
@@ -144,13 +154,13 @@ export default function FAQ() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-3xl p-10 md:p-12 text-white shadow-2xl relative overflow-hidden">
+          <div className="rounded-3xl p-10 md:p-12 text-white shadow-2xl relative overflow-hidden" style={{ backgroundColor: '#0083e6' }}>
             {/* Decorative background elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
             
             <div className="relative z-10">
-              <h3 className="text-3xl md:text-4xl font-black mb-4">Still Have Questions?</h3>
+              <h3 className="text-3xl md:text-4xl font-black mb-4 text-white">Still Have Questions?</h3>
               <p className="text-lg md:text-xl mb-8 opacity-95 max-w-2xl mx-auto">
                 Our expert team is ready to help you transform your industrial operations with cutting-edge IIoT solutions.
               </p>

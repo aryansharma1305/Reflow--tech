@@ -9,8 +9,8 @@ import { FaIndustry, FaChartLine, FaCog, FaRocket, FaAward, FaUsers } from 'reac
 export default function AboutPage() {
   const stats = [
     { number: '2022', label: 'Founded', icon: FaRocket },
-    { number: '100+', label: 'Industries Served', icon: FaIndustry },
-    { number: 'Zero', label: 'Downtime Goal', icon: FaAward },
+    { number: '25+ Devices', label: 'Operational In-Field', icon: FaIndustry },
+    { number: '2+ Years', label: 'In-field Deplyment', icon: FaAward },
   ];
 
   const values = [
