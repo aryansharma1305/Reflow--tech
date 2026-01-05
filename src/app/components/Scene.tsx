@@ -1,11 +1,8 @@
 'use client';
-
 import { Suspense, useEffect, useRef, useState, Component, ReactNode } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, useGLTF, ContactShadows } from '@react-three/drei';
 import * as THREE from 'three';
-
-// Custom Error Boundary for GLTF loading
 class ModelErrorBoundary extends Component<
   { children: ReactNode; fallback?: ReactNode },
   { hasError: boolean; error: Error | null }
@@ -14,11 +11,9 @@ class ModelErrorBoundary extends Component<
     super(props);
     this.state = { hasError: false, error: null };
   }
-
   static getDerivedStateFromError(error: Error) {
     return { hasError: true, error };
   }
-
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('❌ Error loading GLTF model:', {
       message: error?.message || 'Unknown error',
@@ -27,7 +22,6 @@ class ModelErrorBoundary extends Component<
       errorInfo,
     });
   }
-
   render() {
     if (this.state.hasError) {
       return this.props.fallback || (
@@ -37,20 +31,15 @@ class ModelErrorBoundary extends Component<
         </mesh>
       );
     }
-
     return this.props.children;
   }
 }
-
 interface SceneProps {
   modelUrl: string;
 }
-
-// Animated lights for dynamic effect
 function AnimatedLights() {
   const light1Ref = useRef<THREE.DirectionalLight>(null);
   const light2Ref = useRef<THREE.PointLight>(null);
-  
   useFrame((state) => {
     if (light1Ref.current) {
       light1Ref.current.position.x = Math.sin(state.clock.elapsedTime * 0.5) * 5;
@@ -61,7 +50,6 @@ function AnimatedLights() {
       light2Ref.current.intensity = 0.8 + Math.cos(state.clock.elapsedTime * 0.6) * 0.2;
     }
   });
-
   return (
     <>
       <directionalLight 
@@ -93,12 +81,10 @@ function AnimatedLights() {
     </>
   );
 }
-
 function Model({ url }: { url: string }) {
   const groupRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
   const [modelLoaded, setModelLoaded] = useState(false);
-  
   let gltf;
   try {
     gltf = useGLTF(url);
@@ -106,41 +92,28 @@ function Model({ url }: { url: string }) {
     console.error('❌ Failed to load GLTF:', error);
     throw error;
   }
-
   useEffect(() => {
     if (gltf?.scene) {
       console.log('✅ Model loaded successfully!');
       console.log('Model children:', gltf.scene.children);
-      
       try {
-        // Calculate bounding box to center and scale the model
         const box = new THREE.Box3().setFromObject(gltf.scene);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         const maxDim = Math.max(size.x, size.y, size.z);
-        
         console.log('Model dimensions:', { size, maxDim, center });
-        
-        // Scale to fit (target size of 3 units)
         const targetSize = 3;
         const scale = maxDim > 0 ? targetSize / maxDim : 1;
-        
-        // Apply transformations to the scene
         gltf.scene.scale.set(scale, scale, scale);
-        
-        // Center at origin
         gltf.scene.position.set(
           -center.x * scale,
           -center.y * scale,
           -center.z * scale
         );
-        
-        // Enhance materials
         gltf.scene.traverse((child) => {
           if (child instanceof THREE.Mesh) {
             child.castShadow = true;
             child.receiveShadow = true;
-            
             if (child.material) {
               if (Array.isArray(child.material)) {
                 child.material.forEach((mat: THREE.Material) => {
@@ -158,31 +131,23 @@ function Model({ url }: { url: string }) {
             }
           }
         });
-        
         setModelLoaded(true);
       } catch (err) {
         console.error('❌ Error processing model:', err);
       }
     }
   }, [gltf]);
-
   useFrame((state) => {
     if (groupRef.current && modelLoaded) {
-      // Smooth floating animation
       groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.15;
-      
-      // Gentle rotation with hover effect
       const rotationSpeed = hovered ? 0.8 : 0.3;
       groupRef.current.rotation.y += rotationSpeed * 0.01;
-      
-      // Scale pulse on hover
       const targetScale = hovered ? 1.08 : 1;
       groupRef.current.scale.x += (targetScale - groupRef.current.scale.x) * 0.1;
       groupRef.current.scale.y += (targetScale - groupRef.current.scale.y) * 0.1;
       groupRef.current.scale.z += (targetScale - groupRef.current.scale.z) * 0.1;
     }
   });
-
   if (!gltf?.scene) {
     console.warn('⚠️ GLTF scene is null');
     return (
@@ -192,7 +157,6 @@ function Model({ url }: { url: string }) {
       </mesh>
     );
   }
-
   return (
     <group 
       ref={groupRef}
@@ -203,11 +167,8 @@ function Model({ url }: { url: string }) {
     </group>
   );
 }
-
 const Scene: React.FC<SceneProps> = ({ modelUrl }) => {
   const [autoRotate, setAutoRotate] = useState(true);
-
-  // Preload the model
   useEffect(() => {
     console.log('🔄 Attempting to load model from:', modelUrl);
     try {
@@ -221,7 +182,6 @@ const Scene: React.FC<SceneProps> = ({ modelUrl }) => {
       });
     }
   }, [modelUrl]);
-
   return (
     <div 
       className="w-full h-full relative group" 
@@ -254,17 +214,10 @@ const Scene: React.FC<SceneProps> = ({ modelUrl }) => {
           state.gl.setClearColor('#f0f9ff', 1);
         }}
       >
-        {/* Background */}
         <color attach="background" args={['#f0f9ff']} />
-        
-        {/* Fog for depth */}
         <fog attach="fog" args={['#f0f9ff', 8, 20]} />
-        
-        {/* Enhanced lighting */}
         <ambientLight intensity={0.5} color="#ffffff" />
         <AnimatedLights />
-        
-        {/* Shadows */}
         <ContactShadows
           position={[0, -1.5, 0]}
           opacity={0.35}
@@ -272,8 +225,6 @@ const Scene: React.FC<SceneProps> = ({ modelUrl }) => {
           blur={2.5}
           far={4}
         />
-        
-        {/* Model with Error Boundary */}
         <ModelErrorBoundary
           fallback={
             <mesh>
@@ -292,8 +243,6 @@ const Scene: React.FC<SceneProps> = ({ modelUrl }) => {
             <Model url={modelUrl} />
           </Suspense>
         </ModelErrorBoundary>
-        
-        {/* Enhanced controls */}
         <OrbitControls
           enableZoom={true}
           enablePan={true}
@@ -309,17 +258,12 @@ const Scene: React.FC<SceneProps> = ({ modelUrl }) => {
           minPolarAngle={Math.PI / 3.5}
           target={[0, 0, 0]}
         />
-        
-        {/* Environment for reflections */}
         <Environment preset="sunset" />
       </Canvas>
-      
-      {/* Interactive hint overlay */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white px-4 py-2 rounded-full text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 backdrop-blur-sm">
         Drag to rotate • Scroll to zoom • Hover for effect
       </div>
     </div>
   );
 };
-
 export default Scene;

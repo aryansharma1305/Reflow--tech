@@ -1,8 +1,6 @@
 'use client';
-
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
-
 const Scene = dynamic(() => import('./Scene'), { 
   ssr: false,
   loading: () => (
@@ -14,15 +12,11 @@ const Scene = dynamic(() => import('./Scene'), {
     </div>
   )
 });
-
 const Alphaxmodel: React.FC = () => {
   const [key, setKey] = useState(0);
-
-  // Force remount on component mount to fix refresh issues
   useEffect(() => {
     setKey(Date.now());
   }, []);
-
   return (
     <div 
       className="w-full h-full absolute inset-0" 
@@ -39,5 +33,4 @@ const Alphaxmodel: React.FC = () => {
     </div>
   );
 };
-
 export default Alphaxmodel;

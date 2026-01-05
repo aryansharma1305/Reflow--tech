@@ -5,23 +5,19 @@ import StructuredData from "./components/StructuredData";
 import PageLoader from "./components/PageLoader";
 import Header from "./components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 const poppinsBold = Poppins({
   weight: "700",
   variable: "--font-poppins-bold",
   subsets: ["latin"],
 });
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://reflowtech.in'),
   title: "Reflow Tech - AI-Powered Manufacturing Performance Solutions for Pharma Industries",
@@ -81,25 +77,25 @@ export const metadata: Metadata = {
     google: "your-google-verification-code",
   },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white">
       <head>
         <StructuredData />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppinsBold.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppinsBold.variable} antialiased bg-white`}
+        style={{ backgroundColor: '#ffffff' }}
         suppressHydrationWarning
       >
         <AuthProvider>
           <PageLoader />
           <Header />
-          <main className="pt-20">{children}</main>
+          <main className="pt-20 bg-white">{children}</main>
         </AuthProvider>
       </body>
     </html>

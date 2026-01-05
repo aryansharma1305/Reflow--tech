@@ -1,15 +1,12 @@
 'use client';
-
 import { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProductImageSwitcher from './ProductImageSwitcher';
-
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
-
 export default function OurProduct() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -17,14 +14,10 @@ export default function OurProduct() {
   const paragraph2Ref = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const modelContainerRef = useRef<HTMLDivElement>(null);
-
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-
   useEffect(() => {
     if (isInView && sectionRef.current) {
-      // GSAP animations for smooth entrance
       const tl = gsap.timeline();
-
       tl.from(titleRef.current, {
         y: 50,
         opacity: 0,
@@ -57,7 +50,6 @@ export default function OurProduct() {
         }, "-=0.2");
     }
   }, [isInView]);
-
   return (
     <motion.section
       ref={sectionRef}
@@ -68,7 +60,6 @@ export default function OurProduct() {
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute top-10 left-10 w-64 h-64 bg-blue-200 rounded-full opacity-15"
@@ -95,9 +86,7 @@ export default function OurProduct() {
           }}
         />
       </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Title */}
         <motion.h2
           ref={titleRef}
           className="text-4xl lg:text-5xl font-black text-center mb-12"
@@ -107,10 +96,7 @@ export default function OurProduct() {
         >
           Our Product
         </motion.h2>
-
-        {/* Content Grid */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left Side - 3D Model / Image Switcher */}
           <motion.div
             ref={modelContainerRef}
             className="relative w-full h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl bg-white border-2 border-blue-100"
@@ -120,8 +106,6 @@ export default function OurProduct() {
           >
             <ProductImageSwitcher />
           </motion.div>
-
-          {/* Right Side - Text Content */}
           <motion.div
             className="space-y-6"
             initial={{ opacity: 0, x: 50 }}
@@ -129,7 +113,6 @@ export default function OurProduct() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            {/* First Paragraph */}
             <motion.div
               ref={paragraph1Ref}
               className="relative"
@@ -141,8 +124,6 @@ export default function OurProduct() {
                 The Alpha X package offers a comprehensive solution designed to enhance operational efficiency and data management for industrial processes. It includes a powerful device with 90 days of free software, AI-generated reports on demand, monthly reports, and three months of secure data storage, enabling continuous improvement and efficiency.
               </p>
             </motion.div>
-
-            {/* Second Paragraph */}
             <motion.div
               ref={paragraph2Ref}
               className="relative"
@@ -154,8 +135,6 @@ export default function OurProduct() {
                 The cornerstone of any factory&apos;s digital transformation begins with automated capture, transformation and interpretation of process data. ALPHA - X Series provides a scalable solution for chemical and manufacturing industries that can be self-installed to easily collect data from any piece of equipment and enable actionable machine insights in a matter of minutes.
               </p>
             </motion.div>
-
-            {/* View More Button */}
             <motion.button
               ref={buttonRef}
               className="group relative inline-flex items-center px-8 py-3 bg-white border-2 border-gray-800 text-gray-900 rounded-xl font-bold text-base uppercase tracking-wide hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 transform"
@@ -175,4 +154,3 @@ export default function OurProduct() {
     </motion.section>
   );
 }
-

@@ -1,20 +1,17 @@
+'use client';
 import Image from 'next/image';
-
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white relative overflow-hidden">
-      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           backgroundRepeat: 'repeat'
         }}></div>
       </div>
-      
-      {/* Main Footer Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info - ReFlow Branding */}
           <div className="space-y-8">
             <div className="flex items-center">
               <div className="bg-white/20 backdrop-blur-lg rounded-2xl p-6 shadow-2xl border border-white/10 hover:bg-white/30 transition-all duration-300 hover:scale-105">
@@ -53,8 +50,6 @@ export default function Footer() {
               </a>
             </div>
           </div>
-
-          {/* Company Column */}
           <div>
             <h4 className="text-xl font-bold text-white mb-6 flex items-center">
               <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
@@ -67,8 +62,6 @@ export default function Footer() {
               <li><a href="#" className="text-gray-200 hover:text-blue-300 transition-all duration-300 text-base font-medium hover:translate-x-2 block">Support Us</a></li>
             </ul>
           </div>
-
-          {/* Products Column */}
           <div>
             <h4 className="text-xl font-bold text-white mb-6 flex items-center">
               <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
@@ -78,8 +71,6 @@ export default function Footer() {
               <li><a href="#" className="text-gray-200 hover:text-blue-300 transition-all duration-300 text-base font-medium hover:translate-x-2 block">Alpha X Series</a></li>
             </ul>
           </div>
-
-          {/* Platform Column */}
           <div>
             <h4 className="text-xl font-bold text-white mb-6 flex items-center">
               <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
@@ -91,13 +82,11 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Bottom Footer */}
       <div className="border-t border-white/20 bg-white/5 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-300 text-sm font-medium">
-              Copyright © 2024 ReFlow Technologies Pvt Ltd | All Rights Reserved | Terms and Conditions | Privacy Policy
+              Copyright © {currentYear} ReFlow Technologies Pvt Ltd. All Rights Reserved. 
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
@@ -106,8 +95,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Floating AI Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <button className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 flex items-center justify-center group border-2 border-white/20">
           <svg className="w-7 h-7 text-white group-hover:rotate-12 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">

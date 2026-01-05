@@ -1,13 +1,10 @@
 'use client';
-
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import Header from '../components/Header';
 import { loginUser } from '@/lib/auth';
 import { useAuth } from '@/contexts/AuthContext';
-
 export default function LoginPage() {
   const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
@@ -15,13 +12,9 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-100 relative overflow-hidden">
-      <Header />
-      
       <div className="flex items-center justify-center p-4 pt-32">
-      {/* Animated Background Orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
           className="absolute top-20 right-20 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-full blur-3xl"
@@ -44,24 +37,19 @@ export default function LoginPage() {
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
-
-      {/* Login Container */}
       <motion.div 
         className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center relative z-10"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Left Side - Login Form */}
         <motion.div
           className="bg-white/70 backdrop-blur-2xl p-10 lg:p-12 rounded-3xl shadow-2xl border border-white/50 relative overflow-hidden"
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Decorative Element */}
           <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-400/10 to-transparent rounded-bl-full"></div>
-          
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -80,7 +68,6 @@ export default function LoginPage() {
             />
             <p className="text-gray-700 mb-8 text-lg">Fill in the details to login</p>
           </motion.div>
-
           {error && (
             <motion.div
               className="bg-red-50 border-2 border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6"
@@ -90,30 +77,23 @@ export default function LoginPage() {
               <p className="font-semibold">{error}</p>
             </motion.div>
           )}
-
           <form 
             className="space-y-6"
             onSubmit={async (e) => {
               e.preventDefault();
               setError(null);
               setLoading(true);
-
               try {
-                // Validate inputs before sending
                 if (!email.trim() || !password) {
                   setError('Please enter both email and password.');
                   setLoading(false);
                   return;
                 }
-
                 const result = await loginUser({ email: email.trim(), password });
-                
                 if (result.success && result.data?.token) {
                   login(result.data.token);
-                  // Redirect to console after successful authentication
                   window.location.href = 'https://console.reflowtech.in/';
                 } else {
-                  // Show specific error message from API
                   const errorMsg = result.error || 
                     (result.status === 401 
                       ? 'Invalid email or password. Please check your credentials and try again.' 
@@ -133,7 +113,6 @@ export default function LoginPage() {
               }
             }}
           >
-            {/* Email Input */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -151,8 +130,6 @@ export default function LoginPage() {
                 whileFocus={{ scale: 1.02 }}
               />
             </motion.div>
-
-            {/* Password Input */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -188,8 +165,6 @@ export default function LoginPage() {
                 </button>
               </div>
             </motion.div>
-
-            {/* Forgot Password */}
             <motion.div
               className="text-right"
               initial={{ y: 20, opacity: 0 }}
@@ -200,8 +175,6 @@ export default function LoginPage() {
                 Forgot Password?
               </Link>
             </motion.div>
-
-            {/* Login Button */}
             <motion.button
               type="submit"
               disabled={loading}
@@ -238,8 +211,6 @@ export default function LoginPage() {
                 )}
               </span>
             </motion.button>
-
-            {/* Sign Up Link */}
             <motion.p
               className="text-center text-gray-700 mt-6"
               initial={{ y: 20, opacity: 0 }}
@@ -253,8 +224,6 @@ export default function LoginPage() {
             </motion.p>
           </form>
         </motion.div>
-
-        {/* Right Side - Branding */}
         <motion.div
           className="hidden lg:flex flex-col items-center justify-center text-center"
           initial={{ x: 50, opacity: 0 }}
@@ -266,9 +235,7 @@ export default function LoginPage() {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Decorative Element */}
             <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-blue-400/10 to-transparent rounded-tr-full"></div>
-            
             <motion.p 
               className="text-2xl font-bold text-gray-800 mb-8"
               initial={{ y: 20, opacity: 0 }}
@@ -277,7 +244,6 @@ export default function LoginPage() {
             >
               WELCOME TO
             </motion.p>
-            
             <motion.div
               className="relative w-80 h-32 mb-8"
               initial={{ scale: 0, opacity: 0 }}
@@ -293,7 +259,6 @@ export default function LoginPage() {
                 priority
               />
             </motion.div>
-
             <motion.p
               className="text-lg text-gray-700 font-semibold"
               initial={{ y: 20, opacity: 0 }}
@@ -302,8 +267,6 @@ export default function LoginPage() {
             >
               Smarter. Better. Faster.
             </motion.p>
-
-            {/* Animated Dots */}
             <div className="flex justify-center gap-2 mt-8">
               {[0, 1, 2].map((i) => (
                 <motion.div
@@ -324,8 +287,6 @@ export default function LoginPage() {
           </motion.div>
         </motion.div>
       </motion.div>
-
-        {/* Back to Home Link */}
         <motion.div
           className="absolute top-8 left-8"
           initial={{ x: -50, opacity: 0 }}

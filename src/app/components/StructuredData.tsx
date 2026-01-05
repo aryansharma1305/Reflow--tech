@@ -30,7 +30,6 @@ export default function StructuredData() {
       "category": "AI Manufacturing Solutions"
     }
   };
-
   return (
     <script
       type="application/ld+json"

@@ -1,12 +1,9 @@
 'use client';
-
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Header from '../components/Header';
 import { signupUser } from '@/lib/auth';
-
 export default function RegisterPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -20,66 +17,50 @@ export default function RegisterPage() {
     companyName: '',
     contactNumber: ''
   });
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-    // Clear error when user starts typing
     if (error) setError(null);
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
-    // Validation
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.companyName || !formData.contactNumber) {
       setError('All fields are required');
       return;
     }
-
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters long');
       return;
     }
-
-    // Validate contact number format (basic validation)
     const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/;
     if (!phoneRegex.test(formData.contactNumber.replace(/\s/g, ''))) {
       setError('Please enter a valid contact number');
       return;
     }
-
     setLoading(true);
-
     try {
-      // Combine first and last name for the API
       const fullName = `${formData.firstName} ${formData.lastName}`.trim();
-      
       console.log('Attempting registration with:', {
         name: fullName,
         email: formData.email,
         companyName: formData.companyName,
         contactNumber: formData.contactNumber,
       });
-
       const result = await signupUser({
         name: fullName,
         email: formData.email.trim(),
         password: formData.password,
         contactNumber: formData.contactNumber.trim(),
       });
-
       console.log('Registration response:', {
         success: result.success,
         status: result.status,
         error: result.error,
       });
-
       if (result.success) {
-        // Redirect to login page after successful signup
         router.push('/login?registered=true');
       } else {
         const errorMsg = result.error || 
@@ -102,13 +83,10 @@ export default function RegisterPage() {
       setLoading(false);
     }
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-100 relative overflow-hidden">
       <Header />
-      
       <div className="flex items-center justify-center p-4 pt-32">
-        {/* Animated Background Orbs */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div 
             className="absolute top-20 right-20 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-full blur-3xl"
@@ -131,17 +109,13 @@ export default function RegisterPage() {
             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
-
-        {/* Register Container - Centered */}
         <div className="w-full flex items-center justify-center relative z-10">
-          {/* Register Form - Centered */}
           <motion.div
             className="bg-gray-50 p-8 lg:p-10 rounded-2xl shadow-lg border border-gray-200 relative overflow-hidden w-full max-w-2xl mx-auto"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-
             {error && (
               <motion.div
                 className="bg-red-50 border-2 border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6"
@@ -151,9 +125,7 @@ export default function RegisterPage() {
                 <p className="font-semibold">{error}</p>
               </motion.div>
             )}
-
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* First Name and Last Name - Side by Side */}
               <div className="grid grid-cols-2 gap-4">
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
@@ -174,7 +146,6 @@ export default function RegisterPage() {
                     whileFocus={{ scale: 1.01 }}
                   />
                 </motion.div>
-
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -195,8 +166,6 @@ export default function RegisterPage() {
                   />
                 </motion.div>
               </div>
-
-              {/* Email Address */}
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -216,8 +185,6 @@ export default function RegisterPage() {
                   whileFocus={{ scale: 1.01 }}
                 />
               </motion.div>
-
-              {/* Password */}
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -255,8 +222,6 @@ export default function RegisterPage() {
                   </button>
                 </div>
               </motion.div>
-
-              {/* Company Name */}
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -276,8 +241,6 @@ export default function RegisterPage() {
                   whileFocus={{ scale: 1.01 }}
                 />
               </motion.div>
-
-              {/* Contact Number */}
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -297,8 +260,6 @@ export default function RegisterPage() {
                   whileFocus={{ scale: 1.01 }}
                 />
               </motion.div>
-
-              {/* Register Button - Black with white text */}
               <motion.button
                 type="submit"
                 disabled={loading}
@@ -328,8 +289,6 @@ export default function RegisterPage() {
                   </>
                 )}
               </motion.button>
-
-              {/* Login Link */}
               <motion.p
                 className="text-center text-gray-600 mt-4"
                 initial={{ y: 20, opacity: 0 }}
@@ -344,8 +303,6 @@ export default function RegisterPage() {
             </form>
           </motion.div>
         </div>
-
-        {/* Back to Home Link */}
         <motion.div
           className="absolute top-8 left-8"
           initial={{ x: -50, opacity: 0 }}

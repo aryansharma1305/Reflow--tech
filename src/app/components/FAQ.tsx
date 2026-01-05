@@ -1,11 +1,8 @@
 'use client';
-
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
   const faqs = [
     {
       question: "What does ReFlow Technologies specialize in?",
@@ -28,21 +25,16 @@ export default function FAQ() {
       answer: "Our innovative solutions cater to a diverse spectrum of industries, including advanced manufacturing, pharmaceutical production, food & beverage processing, chemical processing, utilities, and energy sectors. Essentially, any industry that relies on accurate data collection, real-time monitoring, and intelligent analysis to optimize operations, ensure quality, and maximize efficiency can benefit from our cutting-edge offerings. We're transforming industries one smart solution at a time."
     }
   ];
-
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-
   return (
     <section className="py-24 bg-gradient-to-br from-white via-blue-50 to-blue-100 relative overflow-hidden">
-      {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-10 w-72 h-72 bg-blue-200 rounded-full opacity-10 blur-3xl"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-blue-300 rounded-full opacity-10 blur-3xl"></div>
       </div>
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -76,8 +68,6 @@ export default function FAQ() {
             Everything you need to know about ReFlow Technologies and our revolutionary IIoT solutions
           </p>
         </motion.div>
-
-        {/* FAQ Items */}
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <motion.div
@@ -122,7 +112,6 @@ export default function FAQ() {
                   </motion.div>
                 </div>
               </button>
-              
               <AnimatePresence>
                 {openIndex === index && (
                   <motion.div
@@ -145,8 +134,6 @@ export default function FAQ() {
             </motion.div>
           ))}
         </div>
-
-        {/* Contact CTA */}
         <motion.div 
           className="mt-20 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -155,10 +142,8 @@ export default function FAQ() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <div className="rounded-3xl p-10 md:p-12 text-white shadow-2xl relative overflow-hidden" style={{ backgroundColor: '#0083e6' }}>
-            {/* Decorative background elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-            
             <div className="relative z-10">
               <h3 className="text-3xl md:text-4xl font-black mb-4 text-white">Still Have Questions?</h3>
               <p className="text-lg md:text-xl mb-8 opacity-95 max-w-2xl mx-auto">

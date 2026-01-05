@@ -1,17 +1,12 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { FaBook, FaTimesCircle, FaChartLine, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
-
-// Enhanced Image Slideshow Component
 const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setDirection(1);
@@ -19,22 +14,18 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
     }, 5000);
     return () => clearInterval(interval);
   }, [images.length]);
-
   const goToSlide = (index: number) => {
     setDirection(index > currentIndex ? 1 : -1);
     setCurrentIndex(index);
   };
-
   const goToPrevious = () => {
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
-
   const goToNext = () => {
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
-
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? '100%' : '-100%',
@@ -52,10 +43,8 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
       opacity: 0,
     }),
   };
-
   return (
     <div className="relative h-[550px] rounded-3xl overflow-hidden shadow-2xl group">
-      {/* Images with slide animation */}
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={currentIndex}
@@ -86,16 +75,12 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
           </motion.div>
         </motion.div>
       </AnimatePresence>
-
-      {/* Gradient Overlay */}
       <motion.div 
         className="absolute inset-0 bg-gradient-to-t from-blue-900/50 via-transparent to-transparent z-10"
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       />
-      
-      {/* Navigation Arrows */}
       <motion.button
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white hover:scale-110"
@@ -104,7 +89,6 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
       >
         <FaChevronLeft className="text-blue-600 text-xl" />
       </motion.button>
-      
       <motion.button
         onClick={goToNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white hover:scale-110"
@@ -113,8 +97,6 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
       >
         <FaChevronRight className="text-blue-600 text-xl" />
       </motion.button>
-      
-      {/* Progress Bar */}
       <motion.div
         className="absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600 z-20"
         initial={{ width: '0%' }}
@@ -122,8 +104,6 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
         transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
         key={currentIndex}
       />
-      
-      {/* Navigation Dots */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
         {images.map((_, idx) => (
           <motion.button
@@ -141,8 +121,6 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
           />
         ))}
       </div>
-      
-      {/* Corner Accents */}
       <motion.div 
         className="absolute top-6 left-6 w-16 h-16 border-t-4 border-l-4 border-blue-400 rounded-tl-2xl z-10"
         initial={{ scale: 0, opacity: 0 }}
@@ -158,20 +136,15 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
     </div>
   );
 };
-
 export default function BreweryPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-100 relative overflow-hidden">
-      <Header />
-      
-      {/* Hero Section */}
       <motion.section 
         className="pt-24 pb-16 relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* Animated Background */}
         <div className="absolute inset-0">
           <motion.div 
             className="absolute top-20 right-20 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-full blur-3xl"
@@ -194,7 +167,6 @@ export default function BreweryPage() {
             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div 
             className="text-center"
@@ -217,7 +189,6 @@ export default function BreweryPage() {
                 transition={{ duration: 1, delay: 0.5 }}
               />
             </motion.h1>
-            
             <motion.p 
               className="text-xl lg:text-2xl text-gray-800 font-bold max-w-4xl mx-auto mt-8"
               initial={{ y: 30, opacity: 0 }}
@@ -229,8 +200,6 @@ export default function BreweryPage() {
           </motion.div>
         </div>
       </motion.section>
-
-      {/* Fermentation Tanks Section */}
       <motion.section 
         className="py-16 relative -mt-8"
         initial={{ opacity: 0 }}
@@ -240,7 +209,6 @@ export default function BreweryPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Image Side */}
             <motion.div 
               className="relative"
               initial={{ x: -100, opacity: 0 }}
@@ -256,7 +224,6 @@ export default function BreweryPage() {
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              
               <ImageSlideshow
                 images={[
                   '/brewery/pexels-cottonbro-5532664.jpg',
@@ -265,8 +232,6 @@ export default function BreweryPage() {
                 alt="Fermentation Tanks"
               />
             </motion.div>
-
-            {/* Content Side */}
             <motion.div
               initial={{ x: 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -279,7 +244,6 @@ export default function BreweryPage() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 via-blue-500/5 to-transparent rounded-full blur-2xl"></div>
-                
                 <motion.h2 
                   className="text-5xl font-black mb-6 relative"
                   initial={{ y: 20, opacity: 0 }}
@@ -296,7 +260,6 @@ export default function BreweryPage() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                   />
                 </motion.h2>
-                
                 <div className="space-y-6 text-gray-800 relative z-10">
                   <motion.p 
                     className="text-lg leading-relaxed"
@@ -306,7 +269,6 @@ export default function BreweryPage() {
                   >
                     Brewers thrive on control and consistency. A single misstep can be the difference between a great batch or a substandard one. The urge to check, double check and triple check is real.
                   </motion.p>
-                  
                   <motion.div 
                     className="bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 shadow-lg relative overflow-hidden"
                     initial={{ y: 20, opacity: 0 }}
@@ -329,8 +291,6 @@ export default function BreweryPage() {
           </div>
         </div>
       </motion.section>
-
-      {/* Batch Consistency Section */}
       <motion.section 
         className="py-16 relative"
         initial={{ opacity: 0 }}
@@ -343,10 +303,8 @@ export default function BreweryPage() {
           animate={{ y: [-30, 30, -30], x: [-20, 20, -20] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Content Side (Left) */}
             <motion.div
               className="order-2 lg:order-1"
               initial={{ x: -100, opacity: 0 }}
@@ -360,7 +318,6 @@ export default function BreweryPage() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 via-blue-500/5 to-transparent rounded-full blur-2xl"></div>
-                
                 <motion.h2 
                   className="text-5xl font-black mb-6 relative"
                   initial={{ y: 20, opacity: 0 }}
@@ -377,7 +334,6 @@ export default function BreweryPage() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                   />
                 </motion.h2>
-                
                 <div className="space-y-6 text-gray-800 relative z-10">
                   <motion.p 
                     className="text-lg leading-relaxed"
@@ -387,7 +343,6 @@ export default function BreweryPage() {
                   >
                     Customers trust your brand and brew to deliver. Nobody likes to have a beer that tastes funny or unfamiliar in some way. A single bad batch can send the brand value out the window. Manual sampling steals your time; Insights are restricted by fermentation data that lives in notebooks.
                   </motion.p>
-                  
                   <motion.div 
                     className="bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 shadow-lg"
                     initial={{ y: 20, opacity: 0 }}
@@ -402,7 +357,6 @@ export default function BreweryPage() {
                       Keep track of your batches and flavour profiles easily by digitising them. Trying a new recipe? Get detailed records on the entire fermentation process, revisit the recipe, make few changes – everything is logged for your convenience and insight.
                     </p>
                   </motion.div>
-                  
                   <motion.div 
                     className="grid grid-cols-3 gap-4 mt-6"
                     initial={{ y: 20, opacity: 0 }}
@@ -433,8 +387,6 @@ export default function BreweryPage() {
                 </div>
               </motion.div>
             </motion.div>
-
-            {/* Image Side (Right) */}
             <motion.div 
               className="relative order-1 lg:order-2"
               initial={{ x: 100, opacity: 0 }}
@@ -450,7 +402,6 @@ export default function BreweryPage() {
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              
               <ImageSlideshow
                 images={[
                   '/brewery/pexels-cottonbro-5532841.jpg',
@@ -462,8 +413,6 @@ export default function BreweryPage() {
           </div>
         </div>
       </motion.section>
-
-      {/* Utilities Section */}
       <motion.section 
         className="py-16 relative"
         initial={{ opacity: 0 }}
@@ -473,7 +422,6 @@ export default function BreweryPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Image Side */}
             <motion.div 
               className="relative"
               initial={{ x: -100, opacity: 0 }}
@@ -489,7 +437,6 @@ export default function BreweryPage() {
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              
               <ImageSlideshow
                 images={[
                   '/brewery/pexels-cottonbro-5532995.jpg',
@@ -498,8 +445,6 @@ export default function BreweryPage() {
                 alt="Utilities"
               />
             </motion.div>
-
-            {/* Content Side */}
             <motion.div
               initial={{ x: 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -512,7 +457,6 @@ export default function BreweryPage() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 via-blue-500/5 to-transparent rounded-full blur-2xl"></div>
-                
                 <motion.h2 
                   className="text-5xl font-black mb-6 relative"
                   initial={{ y: 20, opacity: 0 }}
@@ -529,7 +473,6 @@ export default function BreweryPage() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                   />
                 </motion.h2>
-                
                 <div className="space-y-6 text-gray-800 relative z-10">
                   <motion.p 
                     className="text-lg leading-relaxed"
@@ -539,7 +482,6 @@ export default function BreweryPage() {
                   >
                     Beer brewing is a science transforming raw ingredients into liquid gold. Behind this captivating process lies a critical foundation that might go unnoticed: the utility requirements - providing essential inputs such as <span className="font-bold text-blue-600">water, electricity, steam, natural gas, compressed air, and refrigeration</span>.
                   </motion.p>
-                  
                   <motion.div 
                     className="bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 shadow-lg"
                     initial={{ y: 20, opacity: 0 }}
@@ -554,7 +496,6 @@ export default function BreweryPage() {
                       <span className="font-bold text-blue-600">Compressed Air</span> is useful for moving ingredients, cleaning, and bottling. Any bottling issues might cause (pun intended) Bottleneck problems!
                     </p>
                   </motion.div>
-                  
                   <motion.div 
                     className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 rounded-2xl shadow-xl relative overflow-hidden"
                     initial={{ y: 20, opacity: 0 }}
@@ -577,8 +518,6 @@ export default function BreweryPage() {
           </div>
         </div>
       </motion.section>
-
-      {/* Post Production Section */}
       <motion.section 
         className="py-16 relative"
         initial={{ opacity: 0 }}
@@ -591,10 +530,8 @@ export default function BreweryPage() {
           animate={{ y: [-30, 30, -30], x: [-20, 20, -20] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Content Side (Left) */}
             <motion.div
               className="order-2 lg:order-1"
               initial={{ x: -100, opacity: 0 }}
@@ -608,7 +545,6 @@ export default function BreweryPage() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 via-blue-500/5 to-transparent rounded-full blur-2xl"></div>
-                
                 <motion.h2 
                   className="text-5xl font-black mb-6 relative"
                   initial={{ y: 20, opacity: 0 }}
@@ -625,7 +561,6 @@ export default function BreweryPage() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                   />
                 </motion.h2>
-                
                 <div className="space-y-6 text-gray-800 relative z-10">
                   <motion.p 
                     className="text-lg leading-relaxed"
@@ -635,7 +570,6 @@ export default function BreweryPage() {
                   >
                     As a Master brewer after painstakingly ensuring each parameter is in order, what if your distributers don&apos;t maintain SOPs? Once again, your brand value goes for a toss….
                   </motion.p>
-                  
                   <motion.div 
                     className="bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 shadow-lg"
                     initial={{ y: 20, opacity: 0 }}
@@ -650,8 +584,6 @@ export default function BreweryPage() {
                 </div>
               </motion.div>
             </motion.div>
-
-            {/* Image Side (Right) */}
             <motion.div 
               className="relative order-1 lg:order-2"
               initial={{ x: 100, opacity: 0 }}
@@ -667,7 +599,6 @@ export default function BreweryPage() {
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              
               <ImageSlideshow
                 images={[
                   '/brewery/pexels-cottonbro-5532998.jpg',
@@ -679,8 +610,6 @@ export default function BreweryPage() {
           </div>
         </div>
       </motion.section>
-
-      {/* Regulatory Requirements Section */}
       <motion.section 
         className="py-16 relative"
         initial={{ opacity: 0 }}
@@ -690,7 +619,6 @@ export default function BreweryPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Images Grid */}
             <motion.div 
               className="grid grid-cols-2 gap-6"
               initial={{ x: -100, opacity: 0 }}
@@ -722,7 +650,6 @@ export default function BreweryPage() {
                   />
                 </motion.div>
               ))}
-              
               <motion.div 
                 className="relative h-72 rounded-2xl overflow-hidden shadow-xl col-span-2 group"
                 initial={{ scale: 0, opacity: 0 }}
@@ -731,7 +658,7 @@ export default function BreweryPage() {
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
                 <Image
-                  src="/pharma/WhatsApp Image 2025-07-26 at 1.11.27 PM.jpeg"
+                  src="/pharma/ETP3.jpeg"
                   alt="ETP Plant"
                   fill
                   className="object-cover"
@@ -742,8 +669,6 @@ export default function BreweryPage() {
                 />
               </motion.div>
             </motion.div>
-
-            {/* Content */}
             <motion.div
               initial={{ x: 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -756,7 +681,6 @@ export default function BreweryPage() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-400/10 via-blue-500/5 to-transparent rounded-full blur-2xl"></div>
-                
                 <motion.h2 
                   className="text-5xl font-black mb-6 relative"
                   initial={{ y: 20, opacity: 0 }}
@@ -773,7 +697,6 @@ export default function BreweryPage() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                   />
                 </motion.h2>
-                
                 <div className="space-y-6 text-gray-800 relative z-10">
                   <motion.p 
                     className="text-lg leading-relaxed"
@@ -783,7 +706,6 @@ export default function BreweryPage() {
                   >
                     Breweries must adhere to local and national regulations related to brewery utility requirements and environmental standards. Effluent release is regulated according to the notification of the Ministry of Environment, Forest, and Climate Change.
                   </motion.p>
-                  
                   <motion.div 
                     className="bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 shadow-lg"
                     initial={{ y: 20, opacity: 0 }}
@@ -795,7 +717,6 @@ export default function BreweryPage() {
                       Our systems monitor the impurity levels of treated effluent, including <span className="font-bold text-blue-600">pH, Biological Oxygen Demand (BOD), Chemical Oxygen Demand (COD), Total Suspended Solids (TSS), Ammonia, Nitrate, Chlorine</span>, etc.
                     </p>
                   </motion.div>
-                  
                   <motion.div 
                     className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 rounded-2xl shadow-xl relative overflow-hidden"
                     initial={{ y: 20, opacity: 0 }}
@@ -819,8 +740,6 @@ export default function BreweryPage() {
           </div>
         </div>
       </motion.section>
-
-      {/* Clientele Section */}
       <motion.section 
         className="py-16 pb-24 relative"
         initial={{ opacity: 0 }}
@@ -846,7 +765,6 @@ export default function BreweryPage() {
               transition={{ delay: 0.3, duration: 0.8 }}
             />
           </motion.h2>
-          
           <div className="flex justify-center">
             <motion.div
               className="relative group max-w-md w-full"
@@ -870,7 +788,6 @@ export default function BreweryPage() {
                   fill
                   className="object-contain p-4"
                   onError={(e) => {
-                    // Fallback if image doesn't exist
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     const parent = target.parentElement;
@@ -884,9 +801,7 @@ export default function BreweryPage() {
           </div>
         </div>
       </motion.section>
-
       <Footer />
     </div>
   );
 }
-

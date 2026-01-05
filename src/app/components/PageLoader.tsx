@@ -1,23 +1,18 @@
 'use client';
-
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-
 export default function PageLoader() {
   const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();
-
   useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500); // Loader shows for 1.5 seconds
-
+    }, 1500); 
     return () => clearTimeout(timer);
   }, [pathname]);
-
   return (
     <AnimatePresence mode="wait">
       {isLoading && (
@@ -28,7 +23,6 @@ export default function PageLoader() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          {/* Animated Background Orbs */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div 
               className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-full blur-3xl"
@@ -47,10 +41,7 @@ export default function PageLoader() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>
-
-          {/* Loader Content */}
           <div className="relative z-10 flex flex-col items-center">
-            {/* Logo Container with Pulse Effect */}
             <motion.div
               className="relative mb-8"
               initial={{ scale: 0, rotate: -180 }}
@@ -62,7 +53,6 @@ export default function PageLoader() {
                 duration: 0.8 
               }}
             >
-              {/* Pulsing Glow Ring */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full blur-2xl"
                 animate={{ 
@@ -71,15 +61,11 @@ export default function PageLoader() {
                 }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
-              
-              {/* Rotating Ring */}
               <motion.div
                 className="absolute -inset-4 border-4 border-blue-500/30 rounded-full"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               />
-              
-              {/* Logo */}
               <motion.div
                 className="relative w-32 h-32 bg-white rounded-full p-4 shadow-2xl"
                 animate={{ 
@@ -97,8 +83,6 @@ export default function PageLoader() {
                 />
               </motion.div>
             </motion.div>
-
-            {/* Loading Text */}
             <motion.div
               className="text-center"
               initial={{ opacity: 0, y: 20 }}
@@ -121,8 +105,6 @@ export default function PageLoader() {
               >
                 ReFlow
               </motion.h2>
-              
-              {/* Animated Dots */}
               <div className="flex items-center justify-center gap-2">
                 <span className="text-gray-700 font-semibold">Loading</span>
                 {[0, 1, 2].map((i) => (
@@ -142,8 +124,6 @@ export default function PageLoader() {
                 ))}
               </div>
             </motion.div>
-
-            {/* Progress Bar */}
             <motion.div
               className="w-64 h-1.5 bg-blue-100 rounded-full overflow-hidden mt-8"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -161,8 +141,6 @@ export default function PageLoader() {
                 }}
               />
             </motion.div>
-
-            {/* Tagline */}
             <motion.p
               className="text-sm text-gray-600 font-semibold mt-6"
               initial={{ opacity: 0 }}

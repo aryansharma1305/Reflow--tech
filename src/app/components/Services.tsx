@@ -1,14 +1,11 @@
 'use client';
-
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
-
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -20,18 +17,14 @@ export default function Services() {
   const paragraph1Ref = useRef<HTMLParagraphElement>(null);
   const paragraph2Ref = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
-
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const isVideoInView = useInView(sectionRef, { margin: "-200px" });
-
-  // Video play/pause based on scroll
   useEffect(() => {
     if (videoElementRef.current) {
       if (isVideoInView) {
@@ -43,24 +36,19 @@ export default function Services() {
       }
     }
   }, [isVideoInView]);
-
-  // Update progress bar
   useEffect(() => {
     const video = videoElementRef.current;
     if (!video) return;
-
     const updateProgress = () => {
       if (video.duration) {
         setProgress((video.currentTime / video.duration) * 100);
         setCurrentTime(video.currentTime);
       }
     };
-
     video.addEventListener('timeupdate', updateProgress);
     video.addEventListener('loadeddata', () => setIsLoading(false));
     video.addEventListener('play', () => setIsPlaying(true));
     video.addEventListener('pause', () => setIsPlaying(false));
-
     return () => {
       video.removeEventListener('timeupdate', updateProgress);
       video.removeEventListener('loadeddata', () => setIsLoading(false));
@@ -68,8 +56,6 @@ export default function Services() {
       video.removeEventListener('pause', () => setIsPlaying(false));
     };
   }, []);
-
-  // Auto-hide controls
   useEffect(() => {
     if (!isHovered && isPlaying) {
       const timer = setTimeout(() => setShowControls(false), 3000);
@@ -78,7 +64,6 @@ export default function Services() {
       setShowControls(true);
     }
   }, [isHovered, isPlaying]);
-
   const togglePlay = () => {
     if (videoElementRef.current) {
       if (isPlaying) {
@@ -90,7 +75,6 @@ export default function Services() {
       }
     }
   };
-
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (videoElementRef.current && progressBarRef.current) {
       const rect = progressBarRef.current.getBoundingClientRect();
@@ -98,7 +82,6 @@ export default function Services() {
       videoElementRef.current.currentTime = percent * videoElementRef.current.duration;
     }
   };
-
   const toggleFullscreen = () => {
     if (videoContainerRef.current) {
       if (!document.fullscreenElement) {
@@ -108,12 +91,9 @@ export default function Services() {
       }
     }
   };
-
   useEffect(() => {
     if (isInView && sectionRef.current) {
-      // GSAP animations for smooth entrance
       const tl = gsap.timeline();
-      
       tl.from(titleRef.current, {
         y: 50,
         opacity: 0,
@@ -138,10 +118,8 @@ export default function Services() {
         duration: 0.5,
         ease: "power2.out"
       }, "-=0.2");
-
     }
   }, [isInView]);
-
   return (
     <motion.section 
       ref={sectionRef}
@@ -152,7 +130,6 @@ export default function Services() {
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
           className="absolute top-10 right-10 w-64 h-64 bg-blue-200 rounded-full opacity-15"
@@ -179,10 +156,8 @@ export default function Services() {
           }}
         />
       </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Content - Text */}
           <motion.div 
             ref={textRef}
             className="space-y-6 lg:col-span-5 mb-8 lg:mb-0"
@@ -191,7 +166,6 @@ export default function Services() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            {/* Title */}
             <motion.h2 
               ref={titleRef}
               className="text-4xl lg:text-5xl font-black leading-tight mb-4"
@@ -208,8 +182,6 @@ export default function Services() {
                 transition={{ delay: 0.5, duration: 0.8 }}
               />
             </motion.h2>
-
-            {/* First Paragraph */}
             <motion.div 
               ref={paragraph1Ref}
               className="relative"
@@ -222,8 +194,6 @@ export default function Services() {
                 <span className="text-blue-700 font-semibold"> ReFlowMetrics</span>, Capture and analyse real-time data from your production to deliver actionable insights to drive the decisions that matter.
               </p>
             </motion.div>
-
-            {/* Second Paragraph */}
             <motion.div 
               ref={paragraph2Ref}
               className="relative"
@@ -236,8 +206,6 @@ export default function Services() {
                 <span className="text-blue-700 font-semibold"> Finally, the production monitoring and analytics platform you deserve.</span>
               </p>
             </motion.div>
-
-            {/* Feature Highlights */}
             <motion.div 
               className="grid grid-cols-2 gap-4 mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -253,7 +221,6 @@ export default function Services() {
                 </div>
                 <span className="text-sm font-semibold text-blue-700">Real-time Analytics</span>
               </div>
-              
               <div className="flex items-center space-x-3 bg-blue-50 p-3 rounded-lg">
                 <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
                   <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -263,8 +230,6 @@ export default function Services() {
                 <span className="text-sm font-semibold text-blue-700">AI-Powered</span>
               </div>
             </motion.div>
-
-            {/* CTA Button */}
             <motion.button 
               ref={buttonRef}
               className="group relative inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-bold text-base uppercase tracking-wide hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 transform"
@@ -289,8 +254,6 @@ export default function Services() {
               </motion.svg>
             </motion.button>
           </motion.div>
-
-          {/* Right Content - Enhanced Video Player */}
           <motion.div 
             ref={videoRef}
             className="relative w-full lg:col-span-7"
@@ -299,7 +262,6 @@ export default function Services() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            {/* Premium Video Container with Glassmorphism */}
             <div 
               ref={videoContainerRef}
               className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-black border-2 border-gray-700/50 group"
@@ -309,7 +271,6 @@ export default function Services() {
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1)',
               }}
             >
-              {/* Video Element */}
               <video
                 ref={videoElementRef}
                 className="w-full h-full object-cover"
@@ -319,11 +280,9 @@ export default function Services() {
                 poster="/translogo.png"
                 onClick={togglePlay}
               >
-                <source src="/Reflow Console - Tutorial.mp4" type="video/mp4" />
+                <source src="/reflow-console-tutorial.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-
-              {/* Loading Spinner */}
               {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm z-20">
                   <div className="relative">
@@ -336,19 +295,13 @@ export default function Services() {
                   </div>
                 </div>
               )}
-
-              {/* Gradient Overlays */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/20 pointer-events-none"></div>
-              
-              {/* Animated Border Glow */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/0 via-blue-500/20 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
                    style={{ 
                      background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent)',
                      animation: 'shimmer 3s infinite'
                    }}></div>
-
-              {/* Custom Video Controls */}
               <AnimatePresence>
                 {(showControls || isHovered) && (
                   <motion.div
@@ -358,7 +311,6 @@ export default function Services() {
                     transition={{ duration: 0.3 }}
                     className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10"
                   >
-                    {/* Progress Bar */}
                     <div 
                       ref={progressBarRef}
                       className="w-full h-1.5 bg-white/20 rounded-full mb-4 cursor-pointer group/progress"
@@ -374,11 +326,8 @@ export default function Services() {
                         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover/progress:opacity-100 transition-opacity shadow-lg"></div>
                       </motion.div>
                     </div>
-
-                    {/* Control Buttons */}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        {/* Play/Pause Button */}
                         <motion.button
                           onClick={togglePlay}
                           className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -395,8 +344,6 @@ export default function Services() {
                             </svg>
                           )}
                         </motion.button>
-
-                        {/* Time Display */}
                         <div className="text-white text-sm font-medium bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-lg">
                           <span>
                             {Math.floor(currentTime / 60)}:
@@ -404,10 +351,7 @@ export default function Services() {
                           </span>
                         </div>
                       </div>
-
-                      {/* Right Controls */}
                       <div className="flex items-center gap-3">
-                        {/* Fullscreen Button */}
                         <motion.button
                           onClick={toggleFullscreen}
                           className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center hover:bg-white/30 transition-all duration-300"
@@ -423,8 +367,6 @@ export default function Services() {
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              {/* Center Play Button (when paused) */}
               <AnimatePresence>
                 {!isPlaying && !isHovered && (
                   <motion.div
@@ -454,8 +396,6 @@ export default function Services() {
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              {/* Corner Badge */}
               <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
                 <span className="text-white text-xs font-semibold uppercase tracking-wide">Demo Video</span>
               </div>

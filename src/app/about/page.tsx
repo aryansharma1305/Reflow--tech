@@ -1,18 +1,14 @@
 'use client';
-
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { FaIndustry, FaChartLine, FaCog, FaRocket, FaAward, FaUsers } from 'react-icons/fa';
-
 export default function AboutPage() {
   const stats = [
     { number: '2022', label: 'Founded', icon: FaRocket },
-    { number: '25+ Devices', label: 'Operational In-Field', icon: FaIndustry },
+    { number: '25+ Devices', label: 'Operational In-Fieldit', icon: FaIndustry },
     { number: '2+ Years', label: 'In-field Deplyment', icon: FaAward },
   ];
-
   const values = [
     {
       icon: FaChartLine,
@@ -30,19 +26,14 @@ export default function AboutPage() {
       description: 'We work closely with our clients to understand and solve their unique challenges.'
     }
   ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-100 relative overflow-hidden">
-      <Header />
-      
-      {/* Hero Section */}
       <motion.section 
         className="pt-24 pb-16 relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* Animated Background */}
         <div className="absolute inset-0">
           <motion.div 
             className="absolute top-20 right-20 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-full blur-3xl"
@@ -65,10 +56,8 @@ export default function AboutPage() {
             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col lg:flex-row gap-16 items-center justify-center min-h-[600px]">
-            {/* Left Side - Slogan */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center justify-center min-h-[400px] lg:min-h-[600px]">
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -76,13 +65,12 @@ export default function AboutPage() {
               className="relative w-full lg:w-[45%] flex justify-center"
             >
               <motion.div 
-                className="bg-white/90 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-blue-100 relative overflow-hidden"
+                className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl border border-blue-100 relative overflow-hidden w-full"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Decorative Wavy Patterns */}
                 <motion.svg
-                  className="absolute top-0 right-0 w-32 h-32 opacity-20"
+                  className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 opacity-20"
                   viewBox="0 0 100 100"
                   initial={{ rotate: 0 }}
                   animate={{ rotate: 360 }}
@@ -97,7 +85,7 @@ export default function AboutPage() {
                   />
                 </motion.svg>
                 <motion.svg
-                  className="absolute bottom-0 left-0 w-40 h-40 opacity-20"
+                  className="absolute bottom-0 left-0 w-32 h-32 sm:w-40 sm:h-40 opacity-20"
                   viewBox="0 0 100 100"
                   initial={{ rotate: 0 }}
                   animate={{ rotate: -360 }}
@@ -111,28 +99,24 @@ export default function AboutPage() {
                     className="text-blue-600"
                   />
                 </motion.svg>
-
                 <motion.h1 
-                  className="text-6xl lg:text-8xl font-black mb-4 relative z-10"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 relative z-10 leading-tight"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <span className="text-gray-900">We Automate</span>
-                  <br />
-                  <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+                  <div className="text-gray-900">We Automate</div>
+                  <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent" style={{ wordBreak: 'keep-all', whiteSpace: 'nowrap' }}>
                     Industries
-                  </span>
+                  </div>
                 </motion.h1>
               </motion.div>
             </motion.div>
-
-            {/* Right Side - About Content */}
             <motion.div
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="space-y-8 w-full lg:w-[45%]"
+              className="space-y-6 lg:space-y-8 w-full lg:w-[45%]"
             >
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
@@ -140,35 +124,31 @@ export default function AboutPage() {
                 transition={{ delay: 0.5 }}
               >
                 <motion.div
-                  className="inline-flex items-center px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-sm font-semibold mb-6 shadow-lg"
+                  className="inline-flex items-center px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-sm font-semibold mb-4 lg:mb-6 shadow-lg"
                   whileHover={{ scale: 1.05 }}
                 >
                   <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
                   About Us
                 </motion.div>
-                
-                <h2 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 lg:mb-6 break-words">
                   <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
                     About Us
                   </span>
                 </h2>
               </motion.div>
-
               <motion.div
-                className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-blue-100"
+                className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-blue-100"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
                 whileHover={{ scale: 1.01, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.2)" }}
               >
-                <p className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-6">
+                <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed mb-4 lg:mb-6 break-words">
                   In the age of <span className="font-bold text-blue-600">Industry 4.0</span>, staying ahead requires a competitive edge. Since our founding in <span className="font-bold text-blue-600">2022</span>, We at ReFlow Technologies have been at the forefront of driving digital transformation in factories.
                 </p>
-                
-                <p className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-6">
+                <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed mb-4 lg:mb-6 break-words">
                   We specialize in the automated capture, transformation, and contextualization of process data, empowering businesses to achieve <span className="font-bold text-blue-600">zero downtime</span>, <span className="font-bold text-blue-600">zero resource wastage</span>, and <span className="font-bold text-blue-600">maximum efficiency</span>.
                 </p>
-                
                 <motion.div
                   className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 p-6 rounded-2xl shadow-lg relative overflow-hidden"
                   initial={{ y: 20, opacity: 0 }}
@@ -186,7 +166,6 @@ export default function AboutPage() {
                   </p>
                 </motion.div>
               </motion.div>
-
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -206,8 +185,6 @@ export default function AboutPage() {
           </div>
         </div>
       </motion.section>
-
-      {/* Stats Section */}
       <motion.section 
         className="py-16 relative"
         initial={{ opacity: 0 }}
@@ -252,8 +229,6 @@ export default function AboutPage() {
           </div>
         </div>
       </motion.section>
-
-      {/* Values Section */}
       <motion.section 
         className="py-16 pb-24 relative"
         initial={{ opacity: 0 }}
@@ -282,7 +257,6 @@ export default function AboutPage() {
               transition={{ delay: 0.3, duration: 0.8 }}
             />
           </motion.div>
-
           <div className="grid md:grid-cols-3 gap-8">
             {values.map((value, idx) => {
               const IconComponent = value.icon;
@@ -301,7 +275,6 @@ export default function AboutPage() {
                     animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
                     transition={{ duration: 3, repeat: Infinity }}
                   />
-                  
                   <motion.div
                     className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg relative z-10"
                     whileHover={{ rotate: 360, scale: 1.1 }}
@@ -309,7 +282,6 @@ export default function AboutPage() {
                   >
                     <IconComponent className="text-white text-2xl" />
                   </motion.div>
-                  
                   <h3 className="text-2xl font-black text-gray-900 mb-4 relative z-10">
                     {value.title}
                   </h3>
@@ -322,9 +294,7 @@ export default function AboutPage() {
           </div>
         </div>
       </motion.section>
-
       <Footer />
     </div>
   );
 }
-

@@ -1,38 +1,48 @@
 'use client';
-
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
-
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
-
+  const pathname = usePathname();
   useEffect(() => {
-    if (logoRef.current && navRef.current) {
-      const tl = gsap.timeline();
-      
-      tl.from(logoRef.current, {
-        x: -20,
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-      
-      tl.from(navRef.current.children, {
-        y: -10,
-        opacity: 0,
-        duration: 0.2,
-        stagger: 0.05,
-        ease: "power2.out"
-      }, "-=0.1");
+    if (headerRef.current) {
+      headerRef.current.style.display = 'block';
+      headerRef.current.style.visibility = 'visible';
+      headerRef.current.style.opacity = '1';
+      headerRef.current.style.transform = 'translateY(0)';
     }
-  }, []);
-
+  }, [pathname]);
+  useEffect(() => {
+    if (headerRef.current) {
+      gsap.set(headerRef.current, {
+        opacity: 1,
+        visibility: 'visible',
+        display: 'block',
+        y: 0
+      });
+    }
+    if (logoRef.current) {
+      gsap.set(logoRef.current, {
+        opacity: 1,
+        x: 0
+      });
+    }
+    if (navRef.current && navRef.current.children) {
+      Array.from(navRef.current.children).forEach((child) => {
+        gsap.set(child, {
+          opacity: 1,
+          y: 0
+        });
+      });
+    }
+  }, [pathname]);
   return (
     <header 
       ref={headerRef}
@@ -41,6 +51,13 @@ export default function Header() {
         backgroundColor: '#ffffff',
         background: '#ffffff',
         opacity: 1,
+        visibility: 'visible',
+        display: 'block',
+        transform: 'translateY(0)',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,7 +77,6 @@ export default function Header() {
               priority
             />
           </motion.div>
-
           <motion.nav 
             ref={navRef}
             className="hidden lg:flex space-x-4 flex-1 justify-center"
@@ -97,8 +113,6 @@ export default function Header() {
               </Link>
             ))}
           </motion.nav>
-
-
           <div className="hidden md:flex items-center gap-2 flex-shrink-0 ml-4" style={{ minWidth: '200px', justifyContent: 'flex-end' }}>
             <Link href="/login" className="block">
               <div 
@@ -123,7 +137,6 @@ export default function Header() {
                 LOGIN
               </div>
             </Link>
-            
             <Link href="/register" className="block register-button-link" style={{ textDecoration: 'none' }}>
               <div 
                 className="px-5 py-2.5 rounded-full font-semibold text-sm uppercase tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl transform whitespace-nowrap cursor-pointer register-button hover:scale-105"
@@ -155,7 +168,6 @@ export default function Header() {
               </div>
             </Link>
           </div>
-
           <motion.button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-all duration-300"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -182,10 +194,8 @@ export default function Header() {
             </motion.svg>
           </motion.button>
         </div>
-
         <AnimatePresence>
           {isMenuOpen && (
-
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
@@ -223,7 +233,6 @@ export default function Header() {
                     </Link>
                   ))}
                 </motion.nav>
-                
                 <motion.div 
                   className="mt-4 pt-3 border-t border-gray-200 flex flex-col space-y-2"
                   initial={{ opacity: 0, y: 20 }}

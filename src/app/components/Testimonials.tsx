@@ -26,23 +26,18 @@ export default function Testimonials() {
       rating: 5
     }
   ];
-
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">
             Testimonials
           </div>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Our happy customers</h2>
         </div>
-
-        {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              {/* Quote */}
               <div className="mb-6">
                 <svg className="w-8 h-8 text-orange-500 mb-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -51,8 +46,6 @@ export default function Testimonials() {
                   &ldquo;{testimonial.text}&rdquo;
                 </blockquote>
               </div>
-
-              {/* Rating */}
               <div className="flex items-center mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -60,8 +53,6 @@ export default function Testimonials() {
                   </svg>
                 ))}
               </div>
-
-              {/* Customer Info */}
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mr-4">
                   <span className="text-white font-semibold text-lg">
@@ -76,8 +67,6 @@ export default function Testimonials() {
             </div>
           ))}
         </div>
-
-        {/* Call to Action */}
         <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-orange-500 to-blue-500 rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">$30 Off</h3>

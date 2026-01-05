@@ -31,11 +31,9 @@ export default function Projects() {
       description: "Comprehensive maintenance programs"
     }
   ];
-
   return (
     <section id="projects" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">
             Our Work
@@ -45,12 +43,9 @@ export default function Projects() {
             View all Project
           </button>
         </div>
-
-        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-              {/* Image Placeholder */}
               <div className="relative h-64 bg-gradient-to-br from-blue-400 to-orange-400 overflow-hidden">
                 <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
                   <div className="text-center text-white">
@@ -60,16 +55,12 @@ export default function Projects() {
                     <p className="text-sm">Project Image</p>
                   </div>
                 </div>
-                
-                {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-orange-500 bg-opacity-0 group-hover:bg-opacity-90 transition-all duration-300 flex items-center justify-center">
                   <button className="bg-white text-orange-500 px-6 py-3 rounded-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     View Details
                   </button>
                 </div>
               </div>
-
-              {/* Content */}
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   {project.title}
@@ -84,8 +75,6 @@ export default function Projects() {
             </div>
           ))}
         </div>
-
-        {/* Stats Section */}
         <div className="mt-20 grid md:grid-cols-4 gap-8">
           <div className="text-center">
             <div className="text-4xl font-bold text-orange-500 mb-2">500+</div>

@@ -1,23 +1,18 @@
 'use client';
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
 interface FormData {
   name: string;
   email: string;
   message: string;
 }
-
 export default function Contact() {
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState<FormData>({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
-
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
-    
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
@@ -29,20 +24,15 @@ export default function Contact() {
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     }
-    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
     if (!validateForm()) {
       return;
     }
-
     setLoading(true);
-
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -51,9 +41,7 @@ export default function Contact() {
         },
         body: JSON.stringify(formData),
       });
-
       const data = await response.json();
-      
       if (response.ok && data.success) {
         setShowPopup(true);
         setFormData({ name: '', email: '', message: '' });
@@ -68,18 +56,14 @@ export default function Contact() {
       setLoading(false);
     }
   };
-
   return (
     <>
       <section className="py-24 bg-gradient-to-br from-white via-blue-50 to-blue-100 relative overflow-hidden">
-        {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 right-10 w-96 h-96 bg-blue-200 rounded-full opacity-10 blur-3xl"></div>
           <div className="absolute bottom-20 left-10 w-96 h-96 bg-blue-300 rounded-full opacity-10 blur-3xl"></div>
         </div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Section Header */}
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -107,8 +91,6 @@ export default function Contact() {
               Fill in your details to get in touch with us. We&apos;re here to help transform your industrial operations.
             </p>
           </motion.div>
-
-          {/* Contact Form - Centered */}
           <div className="max-w-2xl mx-auto">
             <motion.div
               className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-10 border border-blue-100"
@@ -118,7 +100,6 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
             >
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name Field */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                     Name <span className="text-red-500">*</span>
@@ -143,8 +124,6 @@ export default function Contact() {
                     <p className="mt-1 text-sm text-red-500">{errors.name}</p>
                   )}
                 </div>
-
-                {/* Email Field */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                     Email ID <span className="text-red-500">*</span>
@@ -169,8 +148,6 @@ export default function Contact() {
                     <p className="mt-1 text-sm text-red-500">{errors.email}</p>
                   )}
                 </div>
-
-                {/* Message Field */}
                 <div>
                   <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
                     Message <span className="text-red-500">*</span>
@@ -195,8 +172,6 @@ export default function Contact() {
                     <p className="mt-1 text-sm text-red-500">{errors.message}</p>
                   )}
                 </div>
-
-                {/* Submit Button */}
                 <motion.button
                   type="submit"
                   disabled={loading}
@@ -223,8 +198,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-
-      {/* Success Popup */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
@@ -270,4 +243,3 @@ export default function Contact() {
     </>
   );
 }
-

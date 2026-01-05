@@ -25,11 +25,9 @@ export default function Blog() {
       image: "/api/placeholder/400/250"
     }
   ];
-
   return (
     <section id="blog" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">
             Blog
@@ -39,12 +37,9 @@ export default function Blog() {
             Read all blogs
           </button>
         </div>
-
-        {/* Blog Posts Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {blogPosts.map((post, index) => (
             <article key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
-              {/* Image Placeholder */}
               <div className="relative h-48 bg-gradient-to-br from-blue-400 to-orange-400 overflow-hidden">
                 <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
                   <div className="text-center text-white">
@@ -54,14 +49,10 @@ export default function Blog() {
                     <p className="text-sm">Blog Image</p>
                   </div>
                 </div>
-                
-                {/* Date Badge */}
                 <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
                   <span className="text-sm font-medium text-gray-700">{post.date}</span>
                 </div>
               </div>
-
-              {/* Content */}
               <div className="p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors">
                   {post.title}
@@ -76,8 +67,6 @@ export default function Blog() {
             </article>
           ))}
         </div>
-
-        {/* Newsletter Signup */}
         <div className="mt-16 bg-gradient-to-r from-orange-500 to-blue-500 rounded-2xl p-8 text-white">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
