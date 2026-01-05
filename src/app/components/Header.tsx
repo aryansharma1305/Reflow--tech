@@ -114,7 +114,7 @@ export default function Header() {
             ))}
           </motion.nav>
           <div className="hidden md:flex items-center gap-2 flex-shrink-0 ml-4" style={{ minWidth: '200px', justifyContent: 'flex-end' }}>
-            <Link href="/login" className="block">
+            <a href="https://login.reflowtech.in/login" className="block">
               <div 
                 className="px-5 py-2.5 border-2 bg-white rounded-full font-semibold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-lg transform whitespace-nowrap cursor-pointer hover:scale-105"
                 style={{ 
@@ -136,7 +136,7 @@ export default function Header() {
               >
                 LOGIN
               </div>
-            </Link>
+            </a>
             <Link href="/register" className="block register-button-link" style={{ textDecoration: 'none' }}>
               <div 
                 className="px-5 py-2.5 rounded-full font-semibold text-sm uppercase tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl transform whitespace-nowrap cursor-pointer register-button hover:scale-105"
@@ -239,7 +239,7 @@ export default function Header() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <Link href="/login">
+                  <a href="https://login.reflowtech.in/login">
                     <motion.div 
                       className="w-full px-4 py-2 border-2 bg-white rounded-lg font-bold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform text-center cursor-pointer block"
                       style={{ borderColor: '#0083e6', color: '#0083e6' }}
@@ -249,7 +249,7 @@ export default function Header() {
                     >
                       Login
                     </motion.div>
-                  </Link>
+                  </a>
                   <Link href="/register">
                     <motion.div 
                       className="w-full px-4 py-2 text-white rounded-lg font-bold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform text-center cursor-pointer block"

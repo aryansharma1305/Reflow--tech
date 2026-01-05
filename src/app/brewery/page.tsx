@@ -87,7 +87,7 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
-        <FaChevronLeft className="text-blue-600 text-xl" />
+        <FaChevronLeft className="text-xl" style={{ color: '#0083e6' }} />
       </motion.button>
       <motion.button
         onClick={goToNext}
@@ -95,7 +95,7 @@ const ImageSlideshow = ({ images, alt }: { images: string[]; alt: string }) => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
-        <FaChevronRight className="text-blue-600 text-xl" />
+        <FaChevronRight className="text-xl" style={{ color: '#0083e6' }} />
       </motion.button>
       <motion.div
         className="absolute top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600 z-20"
@@ -179,7 +179,7 @@ export default function BreweryPage() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+              <span style={{ color: '#0083e6' }}>
                 Digitise Brewery
               </span>
               <motion.div 
@@ -250,7 +250,7 @@ export default function BreweryPage() {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+                  <span style={{ color: '#0083e6' }}>
                     FERMENTATION TANKS
                   </span>
                   <motion.div 
@@ -282,7 +282,7 @@ export default function BreweryPage() {
                       transition={{ duration: 3, repeat: Infinity }}
                     />
                     <p className="text-lg font-semibold relative z-10">
-                      With our <span className="text-blue-600 font-bold">smart analytics platform</span> you will be able to monitor and regulate Temperature, monitor Pressure, Specific gravity, pH, DO in real-time. Our AI-driven analytics deliver actionable insights helping new and existing breweries digitise, modernise and most importantly give peace of mind to Brewers.
+                      With our <span className="font-bold" style={{ color: '#0083e6' }}>smart analytics platform</span> you will be able to monitor and regulate Temperature, monitor Pressure, Specific gravity, pH, DO in real-time. Our AI-driven analytics deliver actionable insights helping new and existing breweries digitise, modernise and most importantly give peace of mind to Brewers.
                     </p>
                   </motion.div>
                 </div>
@@ -324,7 +324,7 @@ export default function BreweryPage() {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+                  <span style={{ color: '#0083e6' }}>
                     BATCH CONSISTENCY
                   </span>
                   <motion.div 
@@ -351,7 +351,7 @@ export default function BreweryPage() {
                     transition={{ delay: 0.4 }}
                   >
                     <p className="text-lg font-semibold mb-4">
-                      With our <span className="text-blue-600 font-bold">AI insights</span> every batch becomes more predictable and more profitable. By understanding the trends and analysing historical data, batch to batch consistency improves in a scientific manner.
+                      With our <span className="font-bold" style={{ color: '#0083e6' }}>AI insights</span> every batch becomes more predictable and more profitable. By understanding the trends and analysing historical data, batch to batch consistency improves in a scientific manner.
                     </p>
                     <p className="text-lg">
                       Keep track of your batches and flavour profiles easily by digitising them. Trying a new recipe? Get detailed records on the entire fermentation process, revisit the recipe, make few changes – everything is logged for your convenience and insight.
@@ -463,7 +463,7 @@ export default function BreweryPage() {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+                  <span style={{ color: '#0083e6' }}>
                     UTILITIES
                   </span>
                   <motion.div 
@@ -480,7 +480,7 @@ export default function BreweryPage() {
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
                   >
-                    Beer brewing is a science transforming raw ingredients into liquid gold. Behind this captivating process lies a critical foundation that might go unnoticed: the utility requirements - providing essential inputs such as <span className="font-bold text-blue-600">water, electricity, steam, natural gas, compressed air, and refrigeration</span>.
+                    Beer brewing is a science transforming raw ingredients into liquid gold. Behind this captivating process lies a critical foundation that might go unnoticed: the utility requirements - providing essential inputs such as <span className="font-bold" style={{ color: '#0083e6' }}>water, electricity, steam, natural gas, compressed air, and refrigeration</span>.
                   </motion.p>
                   <motion.div 
                     className="bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 shadow-lg"
@@ -490,10 +490,10 @@ export default function BreweryPage() {
                     transition={{ delay: 0.4 }}
                   >
                     <p className="text-lg font-semibold mb-3">
-                      <span className="font-bold text-blue-600">Water quality and quantity</span> are essential factors in brewing. This element constitutes your beer&apos;s composition, taste, and consistency. Checking pH, mineral content, etc.
+                      <span className="font-bold" style={{ color: '#0083e6' }}>Water quality and quantity</span> are essential factors in brewing. This element constitutes your beer&apos;s composition, taste, and consistency. Checking pH, mineral content, etc.
                     </p>
                     <p className="text-lg font-semibold">
-                      <span className="font-bold text-blue-600">Compressed Air</span> is useful for moving ingredients, cleaning, and bottling. Any bottling issues might cause (pun intended) Bottleneck problems!
+                      <span className="font-bold" style={{ color: '#0083e6' }}>Compressed Air</span> is useful for moving ingredients, cleaning, and bottling. Any bottling issues might cause (pun intended) Bottleneck problems!
                     </p>
                   </motion.div>
                   <motion.div 
@@ -551,7 +551,7 @@ export default function BreweryPage() {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+                  <span style={{ color: '#0083e6' }}>
                     POST PRODUCTION
                   </span>
                   <motion.div 
@@ -578,7 +578,7 @@ export default function BreweryPage() {
                     transition={{ delay: 0.4 }}
                   >
                     <p className="text-lg font-semibold">
-                      We monitor your <span className="text-blue-600 font-bold">supply chain and distribution points</span> to ensure that your brew is being kept at the right temperature so that it tastes exactly as it did when it left your facility. Any distributers trying to cut corners with sub-par refrigerators can&apos;t do that to your product!
+                      We monitor your <span className="font-bold" style={{ color: '#0083e6' }}>supply chain and distribution points</span> to ensure that your brew is being kept at the right temperature so that it tastes exactly as it did when it left your facility. Any distributers trying to cut corners with sub-par refrigerators can&apos;t do that to your product!
                     </p>
                   </motion.div>
                 </div>
@@ -687,7 +687,7 @@ export default function BreweryPage() {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+                  <span style={{ color: '#0083e6' }}>
                     REGULATORY REQUIREMENTS
                   </span>
                   <motion.div 
@@ -714,7 +714,7 @@ export default function BreweryPage() {
                     transition={{ delay: 0.4 }}
                   >
                     <p className="text-lg font-semibold">
-                      Our systems monitor the impurity levels of treated effluent, including <span className="font-bold text-blue-600">pH, Biological Oxygen Demand (BOD), Chemical Oxygen Demand (COD), Total Suspended Solids (TSS), Ammonia, Nitrate, Chlorine</span>, etc.
+                      Our systems monitor the impurity levels of treated effluent, including <span className="font-bold" style={{ color: '#0083e6' }}>pH, Biological Oxygen Demand (BOD), Chemical Oxygen Demand (COD), Total Suspended Solids (TSS), Ammonia, Nitrate, Chlorine</span>, etc.
                     </p>
                   </motion.div>
                   <motion.div 
@@ -755,7 +755,7 @@ export default function BreweryPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+            <span style={{ color: '#0083e6' }}>
               Our Clientele
             </span>
             <motion.div 
@@ -792,7 +792,7 @@ export default function BreweryPage() {
                     target.style.display = 'none';
                     const parent = target.parentElement;
                     if (parent) {
-                      parent.innerHTML = '<div class="text-blue-600 text-2xl font-bold">2Pints</div>';
+                      parent.innerHTML = '<div class="text-2xl font-bold" style="color: #0083e6">2Pints</div>';
                     }
                   }}
                 />

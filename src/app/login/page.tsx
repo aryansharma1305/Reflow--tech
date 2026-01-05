@@ -1,11 +1,21 @@
 'use client';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import { loginUser } from '@/lib/auth';
-import { useAuth } from '@/contexts/AuthContext';
+// import { motion } from 'framer-motion';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import { useState } from 'react';
+// import { loginUser } from '@/lib/auth';
+// import { useAuth } from '@/contexts/AuthContext';
+
 export default function LoginPage() {
+  // Temporary redirect to external login page
+  if (typeof window !== 'undefined') {
+    window.location.href = 'https://login.reflowtech.in/login';
+    return null;
+  }
+  
+  return null;
+  
+  /* COMMENTED OUT - TEMPORARY
   const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
@@ -306,4 +316,5 @@ export default function LoginPage() {
       </div>
     </div>
   );
+  */
 }
