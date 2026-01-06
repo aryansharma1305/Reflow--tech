@@ -92,7 +92,7 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body
-        className={`${poppinsBold.variable} antialiased`}
+        className={`${poppinsBold.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
         style={{ backgroundColor: "var(--color-background)" }}
         suppressHydrationWarning
       >

@@ -195,7 +195,47 @@ export default function Hero() {
           ease: "easeInOut",
         }}
       />
-
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-20"
+          style={{ backgroundColor: "var(--color-surface-muted)" }}
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-15"
+          style={{ backgroundColor: "var(--color-accent)" }}
+          animate={{
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full opacity-10"
+          style={{ backgroundColor: "var(--color-primary)" }}
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
       <div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         style={{ fontFamily: "var(--font-poppins-bold)" }}
