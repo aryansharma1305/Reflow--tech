@@ -738,8 +738,8 @@ export default function BreweryPage() {
               transition={{ duration: 0.8 }}
             >
               {[
-                { src: "/pharma/ETP1.png", delay: 0.1 },
-                { src: "/pharma/ETP2.png", delay: 0.2 },
+                { src: "/Pharma/ETP1.png", delay: 0.1 },
+                { src: "/Pharma/ETP2.png", delay: 0.2 },
               ].map((img, idx) => (
                 <motion.div
                   key={idx}
@@ -769,7 +769,7 @@ export default function BreweryPage() {
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
                 <Image
-                  src="/pharma/ETP3.jpeg"
+                  src="/Pharma/ETP3.jpeg"
                   alt="ETP Plant"
                   fill
                   className="object-cover"

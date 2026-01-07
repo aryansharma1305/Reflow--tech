@@ -132,7 +132,7 @@ export default function PharmaPage() {
                 transition={{ duration: 0.3 }}
               >
                 <Image
-                  src="/pharma/7xm68f1e18f9cd86.jpg"
+                  src="/Pharma/7xm68f1e18f9cd86.jpg"
                   alt="Reactor Rooms"
                   fill
                   className="object-cover"
@@ -357,7 +357,7 @@ export default function PharmaPage() {
                 transition={{ duration: 0.3 }}
               >
                 <Image
-                  src="/pharma/1200px-Chiller.jpg"
+                  src="/Pharma/1200px-Chiller.jpg"
                   alt="Utility Rooms"
                   fill
                   className="object-cover"
@@ -403,8 +403,8 @@ export default function PharmaPage() {
               transition={{ duration: 0.8 }}
             >
               {[
-                { src: "/pharma/ETP1.png", delay: 0.1 },
-                { src: "/pharma/ETP2.png", delay: 0.2 },
+                { src: "/Pharma/ETP1.png", delay: 0.1 },
+                { src: "/Pharma/ETP2.png", delay: 0.2 },
               ].map((img, idx) => (
                 <motion.div
                   key={idx}
@@ -434,7 +434,7 @@ export default function PharmaPage() {
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
                 <Image
-                  src="/pharma/ETP3.jpeg"
+                  src="/Pharma/ETP3.jpeg"
                   alt="ETP Plant"
                   fill
                   className="object-cover"
@@ -557,9 +557,9 @@ export default function PharmaPage() {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { src: "/pharma/Malladi.png", alt: "Malladi", delay: 0.1 },
-              { src: "/pharma/Proventus.png", alt: "Proventus", delay: 0.2 },
-              { src: "/pharma/SaiSupreme.png", alt: "Sai Supreme", delay: 0.3 },
+              { src: "/Pharma/Malladi.png", alt: "Malladi", delay: 0.1 },
+              { src: "/Pharma/Proventus.png", alt: "Proventus", delay: 0.2 },
+              { src: "/Pharma/SaiSupreme.png", alt: "Sai Supreme", delay: 0.3 },
             ].map((client) => (
               <motion.div
                 key={client.alt}
