@@ -18,11 +18,12 @@ export default function Services() {
   const paragraph2Ref = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showControls, setShowControls] = useState(true);
+  const [showControls, setShowControls] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const isVideoInView = useInView(sectionRef, { margin: "-200px" });
   useEffect(() => {
@@ -57,14 +58,18 @@ export default function Services() {
     };
   }, []);
   useEffect(() => {
-    if (!isHovered && isPlaying) {
-      const timer = setTimeout(() => setShowControls(false), 3000);
+    if (isHovered) {
+      setHasInteracted(true);
+      setShowControls(true);
+    } else if (isPlaying && hasInteracted) {
+      const timer = setTimeout(() => setShowControls(false), 2000);
       return () => clearTimeout(timer);
     } else {
-      setShowControls(true);
+      setShowControls(false);
     }
-  }, [isHovered, isPlaying]);
+  }, [isHovered, isPlaying, hasInteracted]);
   const togglePlay = () => {
+    setHasInteracted(true);
     if (videoElementRef.current) {
       if (isPlaying) {
         videoElementRef.current.pause();
@@ -375,12 +380,12 @@ export default function Services() {
           >
             <div
               ref={videoContainerRef}
-              className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-linear-to-br from-gray-900 via-gray-800 to-black border-2 border-gray-700/50 group"
+              className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black border border-gray-700/30 group"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               style={{
                 boxShadow:
-                  "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+                  "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05)",
               }}
             >
               <video
@@ -395,32 +400,6 @@ export default function Services() {
                 <source src="/reflow-console-tutorial.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              {isLoading && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm z-20">
-                  <div className="relative">
-                    <div className="w-16 h-16 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 text-blue-500"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              )}
-              <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-black/20 pointer-events-none"></div>
-              <div
-                className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-500/0 via-blue-500/20 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{
-                  background:
-                    "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent)",
-                  animation: "shimmer 3s infinite",
-                }}
-              ></div>
               <AnimatePresence>
                 {(showControls || isHovered) && (
                   <motion.div
@@ -428,7 +407,7 @@ export default function Services() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute inset-0 flex flex-col justify-end p-4 bg-linear-to-t from-black/80 via-black/40 to-transparent z-10"
+                    className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"
                   >
                     <div
                       ref={progressBarRef}
@@ -436,7 +415,7 @@ export default function Services() {
                       onClick={handleProgressClick}
                     >
                       <motion.div
-                        className="h-full bg-linear-to-r from-blue-500 to-blue-600 rounded-full relative overflow-hidden"
+                        className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full relative overflow-hidden"
                         style={{ width: `${progress}%` }}
                         initial={{ width: 0 }}
                         animate={{ width: `${progress}%` }}
@@ -504,38 +483,6 @@ export default function Services() {
                         </motion.button>
                       </div>
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <AnimatePresence>
-                {!isPlaying && !isHovered && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    className="absolute inset-0 flex items-center justify-center pointer-events-none z-5"
-                  >
-                    <motion.div
-                      className="w-20 h-20 bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center border-2 border-white/30 shadow-2xl cursor-pointer pointer-events-auto"
-                      onClick={togglePlay}
-                      whileHover={{
-                        scale: 1.1,
-                        backgroundColor: "rgba(255, 255, 255, 0.3)",
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <motion.svg
-                        className="w-10 h-10 text-white ml-1"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        initial={{ x: 0 }}
-                        animate={{ x: [0, 2, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </motion.svg>
-                    </motion.div>
                   </motion.div>
                 )}
               </AnimatePresence>

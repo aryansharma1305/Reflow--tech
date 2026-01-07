@@ -241,19 +241,14 @@ export default function Hero() {
         style={{ fontFamily: "var(--font-poppins-bold)" }}
       >
         <main>
-          <motion.div
-            ref={titleRef}
-            className="mb-6 text-left"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <motion.h1
+          <div ref={titleRef} className="mb-6 text-left">
+            <h1
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-6"
               style={{ color: "var(--color-primary)" }}
             >
               ReFlow Console
-            </motion.h1>
-            <motion.h2
+            </h1>
+            <h2
               className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-4 font-normal"
               style={{ color: "var(--color-text-secondary)", fontWeight: 400 }}
             >
@@ -263,8 +258,8 @@ export default function Hero() {
                 delay={2000}
                 loop={false}
               />
-            </motion.h2>
-          </motion.div>
+            </h2>
+          </div>
         </main>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-16">
@@ -272,8 +267,8 @@ export default function Hero() {
           <motion.div
             ref={chevron1Ref}
             className="relative flex flex-col items-center"
-            whileHover={{ scale: 1.05, y: -5 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
             <div
               className="relative"
@@ -321,8 +316,8 @@ export default function Hero() {
           <motion.div
             ref={chevron2Ref}
             className="relative flex flex-col items-center"
-            whileHover={{ scale: 1.05, y: -5 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
             <div
               className="relative"
@@ -370,8 +365,8 @@ export default function Hero() {
           <motion.div
             ref={chevron3Ref}
             className="relative flex flex-col items-center"
-            whileHover={{ scale: 1.05, y: -5 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
             <div
               className="relative"

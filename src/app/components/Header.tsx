@@ -87,10 +87,10 @@ export default function Header() {
           >
             {[
               { label: "Home", href: "/" },
-              { label: "About Us", href: "/about" },
               { label: "For Pharma", href: "/pharma" },
               { label: "For Brewery", href: "/brewery" },
               { label: "For EV", href: "/ev" },
+              { label: "About Us", href: "/about" },
               { label: "Contact Us", href: "/contact" },
             ].map((item, index) => (
               <Link key={item.label} href={item.href}>
