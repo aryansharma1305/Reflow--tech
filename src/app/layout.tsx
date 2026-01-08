@@ -5,6 +5,7 @@ import StructuredData from "./components/StructuredData";
 import PageLoader from "./components/PageLoader";
 import Header from "./components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { Toaster } from "react-hot-toast";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -103,6 +104,11 @@ export default function RootLayout({
             style={{ backgroundColor: "var(--color-background)" }}
           >
             {children}
+            <Toaster
+              position="top-center"
+              reverseOrder={false}
+              toastOptions={{ duration: 5000 }}
+            />
           </main>
         </AuthProvider>
       </body>

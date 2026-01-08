@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
+import { contactUsApi } from "@/lib/api/contact";
 
 interface FormData {
   name: string;
@@ -17,6 +19,7 @@ export default function Contact() {
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [isHovered, setIsHovered] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
@@ -42,24 +45,20 @@ export default function Contact() {
     }
     setLoading(true);
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
-      if (response.ok && data.success) {
+      const response = await contactUsApi(formData);
+      if (response && response.status === "success") {
+        toast.success("Message sent successfully!");
         setShowPopup(true);
         setFormData({ name: "", email: "", message: "" });
         setErrors({});
       } else {
-        alert(data.message || "Failed to send message. Please try again.");
+        toast.error(
+          response.message || "Failed to send message. Please try again."
+        );
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      alert("Error sending message. Please try again later.");
+      toast.error("Error sending message. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -289,15 +288,19 @@ export default function Contact() {
                 <motion.button
                   type="submit"
                   disabled={loading}
-                  className={`w-full py-5 px-8 rounded-2xl font-bold text-xl shadow-2xl transition-all duration-300 ${
-                    loading ? "opacity-50 cursor-not-allowed" : ""
+                  className={`w-full py-5 px-8 rounded-2xl font-bold text-xl shadow-2xl ${
+                    loading
+                      ? "opacity-70 cursor-not-allowed"
+                      : "transition-all duration-300"
                   }`}
                   style={{
                     background: loading
                       ? "var(--color-text-muted)"
+                      : isHovered
+                      ? `linear-gradient(135deg, var(--color-primary-hover), var(--color-accent))`
                       : `linear-gradient(135deg, var(--color-primary), var(--color-accent))`,
                     color: "var(--color-text-inverse)",
-                    transform: loading ? "none" : undefined,
+                    pointerEvents: loading ? "none" : "auto",
                   }}
                   whileHover={
                     !loading
@@ -305,23 +308,11 @@ export default function Contact() {
                           scale: 1.02,
                           boxShadow: "0 25px 50px -12px rgba(0, 163, 255, 0.4)",
                         }
-                      : {}
+                      : undefined
                   }
-                  whileTap={!loading ? { scale: 0.98 } : {}}
-                  onMouseEnter={(e) => {
-                    if (!loading) {
-                      (
-                        e.target as HTMLButtonElement
-                      ).style.background = `linear-gradient(135deg, var(--color-primary-hover), var(--color-accent))`;
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!loading) {
-                      (
-                        e.target as HTMLButtonElement
-                      ).style.background = `linear-gradient(135deg, var(--color-primary), var(--color-accent))`;
-                    }
-                  }}
+                  whileTap={!loading ? { scale: 0.98 } : undefined}
+                  onMouseEnter={() => !loading && setIsHovered(true)}
+                  onMouseLeave={() => !loading && setIsHovered(false)}
                 >
                   {loading ? (
                     <span className="flex items-center justify-center">
@@ -436,7 +427,7 @@ export default function Contact() {
                 transition={{ delay: 0.5 }}
               >
                 Thank you for reaching out! Our team will review your message
-                and get back to you within 24 hours.
+                and get back to you soon.
               </motion.p>
 
               <motion.button
