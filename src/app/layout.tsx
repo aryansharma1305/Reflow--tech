@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
-import PageLoader from "./components/PageLoader";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "./components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "react-hot-toast";
@@ -111,6 +112,8 @@ export default function RootLayout({
             />
           </main>
         </AuthProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
