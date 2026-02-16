@@ -46,7 +46,7 @@ export default function AboutPage() {
       style={{ backgroundColor: "var(--color-background)" }}
     >
       <motion.section 
-        className="pt-24 pb-16 relative overflow-hidden"
+        className="pt-32 pb-16 relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}

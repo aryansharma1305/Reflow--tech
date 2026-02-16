@@ -4,9 +4,6 @@ import { motion, useInView } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const TypingAnimation = ({
   text,
@@ -113,6 +110,12 @@ export default function Hero() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+  }, []);
+
+  useEffect(() => {
     if (isInView && sectionRef.current) {
       const tl = gsap.timeline();
       tl.from(titleRef.current, {
@@ -167,7 +170,7 @@ export default function Hero() {
     <motion.section
       ref={sectionRef}
       id="home"
-      className="pt-20 pb-16 relative overflow-hidden"
+      className="pt-32 pb-16 relative overflow-hidden"
       style={{ background: "var(--color-background)" }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

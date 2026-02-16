@@ -1,10 +1,11 @@
 'use client';
 import Image from 'next/image';
-const ProductImageSwitcher: React.FC = () => {
+
+const ProductImageSwitcher = () => {
   return (
     <div className="w-full h-full flex items-center justify-center bg-blue-50 rounded-2xl" style={{ minHeight: '400px' }}>
       <Image 
-        src="/ALPHAX.png" 
+        src="/producsts/alpha2.jpeg" 
         alt="ALPHA X Product" 
         width={500} 
         height={500} 

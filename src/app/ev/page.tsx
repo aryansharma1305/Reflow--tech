@@ -41,7 +41,7 @@ export default function EVPage() {
 
       {/* Hero Section with Kart -> Arrow -> Display */}
       <motion.section
-        className="pt-28 pb-16 relative min-h-[90vh]"
+        className="pt-32 pb-16 relative min-h-[90vh]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}

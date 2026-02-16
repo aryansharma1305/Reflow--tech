@@ -4,9 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProductImageSwitcher from "./ProductImageSwitcher";
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+
 export default function OurProduct() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -15,6 +13,13 @@ export default function OurProduct() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const modelContainerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+  }, []);
+
   useEffect(() => {
     if (isInView && sectionRef.current) {
       const tl = gsap.timeline();
@@ -150,7 +155,7 @@ export default function OurProduct() {
               >
                 The Alpha X package offers a comprehensive solution designed to
                 enhance operational efficiency and data management for
-                industrial processes. It includes a powerful device with 90 days
+                industrial processes. It includes a powerful device with 30 days
                 of free software, AI-generated reports on demand, monthly
                 reports, and three months of secure data storage, enabling
                 continuous improvement and efficiency.

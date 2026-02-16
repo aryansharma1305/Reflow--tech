@@ -3,9 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -26,6 +24,13 @@ export default function Services() {
   const [hasInteracted, setHasInteracted] = useState(false);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const isVideoInView = useInView(sectionRef, { margin: "-200px" });
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+  }, []);
+
   useEffect(() => {
     if (videoElementRef.current) {
       if (isVideoInView) {

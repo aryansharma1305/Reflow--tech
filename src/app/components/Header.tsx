@@ -87,6 +87,7 @@ export default function Header() {
           >
             {[
               { label: "Home", href: "/" },
+              { label: "Products", href: "/products" },
               { label: "For Pharma", href: "/pharma" },
               { label: "For Brewery", href: "/brewery" },
               { label: "For EV", href: "/ev" },
@@ -255,6 +256,7 @@ export default function Header() {
                   {[
                     { label: "Home", href: "/" },
                     { label: "About Us", href: "/about" },
+                    { label: "Products", href: "/products" },
                     { label: "For Pharma", href: "/pharma" },
                     { label: "For Brewery", href: "/brewery" },
                     { label: "For EV", href: "/ev" },

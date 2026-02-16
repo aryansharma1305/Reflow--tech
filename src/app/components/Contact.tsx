@@ -67,7 +67,7 @@ export default function Contact() {
 
   return (
     <>
-      <section className="py-24 relative overflow-hidden">
+      <section className="pt-32 pb-24 relative overflow-hidden">
         {/* Decorative background elements with brand colors */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div

@@ -4,15 +4,20 @@ import { motion, useInView } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+
 export default function Features() {
   const sectionRef = useRef<HTMLElement>(null);
   const chevron1Ref = useRef<HTMLDivElement>(null);
   const chevron2Ref = useRef<HTMLDivElement>(null);
   const chevron3Ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+  }, []);
+
   useEffect(() => {
     if (isInView && sectionRef.current) {
       const tl = gsap.timeline();
