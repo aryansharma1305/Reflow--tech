@@ -51,6 +51,8 @@ export default function Footer() {
             <div className="flex space-x-3">
               <a
                 href="https://wa.me/917338732904"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 group"
                 style={{
                   backgroundColor: "var(--color-surface)",
@@ -85,6 +87,8 @@ export default function Footer() {
               </a>
               <a
                 href="https://www.linkedin.com/company/reflowtechnologies/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 group"
                 style={{
                   backgroundColor: "var(--color-surface)",
@@ -119,6 +123,8 @@ export default function Footer() {
               </a>
               <a
                 href="https://www.instagram.com/reflowtech/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 group"
                 style={{
                   backgroundColor: "var(--color-surface)",
@@ -164,6 +170,8 @@ export default function Footer() {
                 </svg>
                 <a
                   href="https://wa.me/917338732904"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-base font-semibold transition-colors duration-300"
                   style={{ color: "var(--color-text-secondary)" }}
                   onMouseEnter={(e) => {
@@ -364,18 +372,6 @@ export default function Footer() {
             >
               Copyright © {currentYear} ReFlow Technologies Pvt Ltd. All Rights
               Reserved.
-            </div>
-            <div className="flex items-center space-x-2">
-              <div
-                className="w-2 h-2 rounded-full animate-pulse"
-                style={{ backgroundColor: "var(--color-accent)" }}
-              ></div>
-              <span
-                className="text-xs sm:text-sm font-medium"
-                style={{ color: "var(--color-text-muted)" }}
-              >
-                Made with ❤️ by ReFlow Team
-              </span>
             </div>
           </div>
         </div>

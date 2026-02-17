@@ -18,7 +18,7 @@ export default function AboutPage() {
       label: "Operational In-Field",
       icon: FaIndustry,
     },
-    { number: "2+ Years", label: "In-field Deplyment", icon: FaAward },
+    { number: "2+ Years", label: "In-field Deployment", icon: FaAward },
   ];
   const values = [
     {
@@ -46,7 +46,7 @@ export default function AboutPage() {
       style={{ backgroundColor: "var(--color-background)" }}
     >
       <motion.section 
-        className="pt-32 pb-16 relative overflow-hidden"
+        className="pt-24 pb-16 relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -113,7 +113,7 @@ export default function AboutPage() {
                     style={{ color: "var(--color-primary)" }}
                   />
                 </motion.svg>
-                <motion.h1 
+                <motion.h1
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 relative z-10 leading-tight text-center md:text-left"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -233,7 +233,7 @@ export default function AboutPage() {
           </div>
         </div>
       </motion.section>
-      <motion.section 
+      <motion.section
         className="py-12 sm:py-16 md:py-20 relative"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -288,7 +288,7 @@ export default function AboutPage() {
           </div>
         </div>
       </motion.section>
-      <motion.section 
+      <motion.section
         className="py-12 sm:py-16 md:py-20 pb-16 sm:pb-20 md:pb-24 relative"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -438,6 +438,9 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.02 }}
+              onClick={() =>
+                window.open("https://www.linkedin.com/in/chakreesh/", "_blank")
+              }
             >
               <div
                 className="absolute top-0 right-0 w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full blur-2xl"
@@ -513,6 +516,12 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.5 }}
               whileHover={{ scale: 1.02 }}
+              onClick={() =>
+                window.open(
+                  "https://www.linkedin.com/in/rajkumar-m13/",
+                  "_blank"
+                )
+              }
             >
               <div
                 className="absolute top-0 right-0 w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full blur-2xl"
@@ -566,7 +575,7 @@ export default function AboutPage() {
                   className="text-2xl sm:text-2xl md:text-3xl font-black mb-2"
                   style={{ color: "var(--color-text-primary)" }}
                 >
-                  RajKumar
+                  Rajkumar
                 </h3>
                 <p
                   className="text-base sm:text-base md:text-lg font-semibold"
