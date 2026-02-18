@@ -6,19 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Header from "./components/Header";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "react-hot-toast";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-const poppinsBold = Poppins({
-  weight: "700",
-  variable: "--font-poppins-bold",
-  subsets: ["latin"],
-});
+
 export const metadata: Metadata = {
   title: "Reflow Tech - AI-Powered Manufacturing Solutions",
   description: "ReFlow Technologies - Industrial IoT Solutions",
@@ -35,7 +23,7 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body
-        className={`${poppinsBold.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className="antialiased"
         style={{ backgroundColor: "var(--color-background)" }}
         suppressHydrationWarning
       >
