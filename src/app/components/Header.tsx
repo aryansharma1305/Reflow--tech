@@ -154,8 +154,8 @@ export default function Header() {
                 LOGIN
               </div>
             </a>
-            <Link
-              href="/register"
+            <a
+              href="https://reflow-console.vercel.app/register"
               className="block register-button-link"
               style={{ textDecoration: "none" }}
             >
@@ -187,7 +187,7 @@ export default function Header() {
                   REGISTER
                 </span>
               </div>
-            </Link>
+            </a>
           </div>
           <motion.button
             className="md:hidden p-2 rounded-lg transition-all duration-300"
@@ -319,7 +319,7 @@ export default function Header() {
                       Login
                     </motion.div>
                   </a>
-                  <Link href="/register">
+                  <a href="https://reflow-console.vercel.app/register">
                     <motion.div
                       className="w-full px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 transform text-center cursor-pointer block"
                       style={{
@@ -336,7 +336,7 @@ export default function Header() {
                     >
                       Register
                     </motion.div>
-                  </Link>
+                  </a>
                 </motion.div>
               </motion.div>
             </motion.div>

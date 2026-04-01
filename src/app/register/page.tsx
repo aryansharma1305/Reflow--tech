@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signupUser } from "@/lib/auth";
@@ -117,13 +118,28 @@ export default function RegisterPage() {
             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
-        <div className="w-full flex items-center justify-center relative z-10">
+        <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center relative z-10">
           <motion.div
-            className="bg-gray-50 p-8 lg:p-10 rounded-2xl shadow-lg border border-gray-200 relative overflow-hidden w-full max-w-2xl mx-auto"
+            className="bg-white/75 backdrop-blur-2xl p-8 lg:p-10 rounded-3xl shadow-2xl border border-white/50 relative overflow-hidden w-full max-w-2xl mx-auto"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
+            <motion.div
+              initial={{ y: 16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="mb-6"
+            >
+              <h1 className="text-4xl font-black">
+                <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-900 bg-clip-text text-transparent">
+                  Create Account
+                </span>
+              </h1>
+              <p className="text-gray-600 mt-2 text-sm">
+                Register and start using ReFlow Console for real-time monitoring.
+              </p>
+            </motion.div>
             {error && (
               <motion.div
                 className="bg-red-50 border-2 border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6"
@@ -134,7 +150,7 @@ export default function RegisterPage() {
               </motion.div>
             )}
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -296,7 +312,7 @@ export default function RegisterPage() {
               <motion.button
                 type="submit"
                 disabled={loading}
-                className={`w-full bg-black text-white py-4 px-6 rounded-lg font-semibold text-base shadow-lg hover:bg-gray-900 transition-all duration-300 flex items-center justify-center gap-2 ${
+                className={`w-full bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white py-4 px-6 rounded-xl font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 ${
                   loading ? "opacity-50 cursor-not-allowed" : "hover:shadow-xl"
                 }`}
                 initial={{ y: 20, opacity: 0 }}
@@ -363,6 +379,37 @@ export default function RegisterPage() {
                 </Link>
               </motion.p>
             </form>
+          </motion.div>
+          <motion.div
+            className="hidden lg:flex flex-col items-center justify-center text-center"
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+          >
+            <motion.div
+              className="bg-white/70 backdrop-blur-2xl p-12 rounded-3xl shadow-2xl border border-white/50 relative overflow-hidden max-w-md"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-blue-400/10 to-transparent rounded-tr-full" />
+              <p className="text-2xl font-bold text-gray-800 mb-8">WELCOME TO</p>
+              <div className="relative w-72 h-24 mb-8 mx-auto">
+                <Image
+                  src="/translogo.png"
+                  alt="ReFlow Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <p className="text-gray-700 font-semibold mb-6">Smarter. Better. Faster.</p>
+              <a
+                href="https://reflow-console.vercel.app/register"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
+              >
+                Open Console Register
+              </a>
+            </motion.div>
           </motion.div>
         </div>
         <motion.div
